@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-//na przysz³oœæ - dodaæ unityengine.inputsytem albo nic ne bêdzie dzia³aæ i zmieniæ preferencje z default na visual studio 
+//na przyszÅ‚oÅ›Ä‡ - dodaÄ‡ unityengine.inputsytem albo nic ne bÄ™dzie dziaÅ‚aÄ‡ i zmieniÄ‡ preferencje z default na visual studio 
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
     }
 
     private void FixedUpdate()
@@ -156,6 +157,13 @@ public class PlayerController : MonoBehaviour
         else if (context.canceled)
         {
             isJumpHeld = false;
+        }
+    }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("Interact button pressed.");
         }
     }
 }
