@@ -298,6 +298,7 @@ MonoBehaviour:
   jumpImpulse: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  coyoteTime: 0.1
   _isMoving: 0
   _isRunning: 0
   _isFacingRight: 1

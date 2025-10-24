@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-//na przyszłość - dodać unityengine.inputsytem albo nic ne będzie działać i zmienić preferencje z default na visual studio 
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
@@ -13,12 +12,14 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 5f;
 
     [Header("Jump Settings")]
-    [SerializeField] private float jumpImpulse = 12f;
-    [SerializeField] private float fallMultiplier = 2.5f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
+    [SerializeField] private float jumpImpulse = 14f; // Higher for snappier jumps
+    [SerializeField] private float fallMultiplier = 2.5f; // Faster fall
+    [SerializeField] private float lowJumpMultiplier = 2f; // Variable jump height
+    [SerializeField] private float coyoteTime = 0.1f; // Forgiving jump after leaving ground
 
     private Vector2 moveInput;
     private bool isJumpHeld;
+    private float coyoteTimeCounter;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -56,7 +57,6 @@ public class PlayerController : MonoBehaviour
         {
             if (_isFacingRight != value)
             {
-                //w prawo
                 transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
             }
             _isFacingRight = value;
@@ -68,13 +68,9 @@ public class PlayerController : MonoBehaviour
         get
         {
             if (touchingDirections.IsGrounded)
-            {
                 return IsMoving ? (IsRunning ? runSpeed : walkSpeed) : 0f;
-            }
             else
-            {
                 return airWalkSpeed;
-            }
         }
     }
 
@@ -87,27 +83,44 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+    
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            GetComponent<PlayerInput>().enabled = false;
+        }
+        else
+        {
+            GetComponent<PlayerInput>().enabled = true;
+        }
+    
+
+        // Coyote time counter
+        if (touchingDirections.IsGrounded)
+            coyoteTimeCounter = coyoteTime;
+        else
+            coyoteTimeCounter -= Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
         Vector2 velocity = rb.linearVelocity;
 
-        // Gravity adjustment for better jump feel
+        // Gravity adjustments for better jump feel
         if (velocity.y < 0f)
         {
-            // Falling
-            velocity.y += Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
+            // Falling faster
+            velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
         }
         else if (velocity.y > 0f && !isJumpHeld)
         {
-            // Released jump early
-            velocity.y += Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
+            // Short jump if released early
+            velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
         }
 
-        // Apply horizontal movement
-        velocity.x = moveInput.x * CurrentMoveSpeed;
+        // Horizontal movement
+        float targetX = moveInput.x * CurrentMoveSpeed;
+        velocity.x = Mathf.Lerp(velocity.x, targetX, 0.2f); // Smooth air movement
+
         rb.linearVelocity = velocity;
 
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
@@ -116,49 +129,37 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-
         IsMoving = moveInput != Vector2.zero;
-
         SetFacingDirection(moveInput);
     }
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (moveInput.x > 0 && !IsFacingRight)
-        {
-            IsFacingRight = true;
-        }
-        else if (moveInput.x < 0 && IsFacingRight)
-        {
-            IsFacingRight = false;
-        }
+        if (moveInput.x > 0 && !IsFacingRight) IsFacingRight = true;
+        else if (moveInput.x < 0 && IsFacingRight) IsFacingRight = false;
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            IsRunning = true;
-        }
-        else if (context.canceled)
-        {
-            IsRunning = false;
-        }
+        if (context.started) IsRunning = true;
+        else if (context.canceled) IsRunning = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && touchingDirections.IsGrounded)
+        if (context.started && coyoteTimeCounter > 0f)
         {
             animator.SetTrigger("jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
             isJumpHeld = true;
+            coyoteTimeCounter = 0f;
         }
         else if (context.canceled)
         {
             isJumpHeld = false;
         }
     }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
