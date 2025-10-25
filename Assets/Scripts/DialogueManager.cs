@@ -1,11 +1,8 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Ink.Runtime;
-using UnityEngine.InputSystem;
-
-
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,12 +12,12 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
 
-    public bool dialogueIsPlaying
-    {
-        get; private set;
-    }
+    public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
+
+    //  Event that other scripts can listen to
+    public event Action OnDialogueComplete;
 
     private void Awake()
     {
@@ -31,10 +28,7 @@ public class DialogueManager : MonoBehaviour
         instance = this;
     }
 
-    public static DialogueManager GetInstance()
-    {
-        return instance;
-    }
+    public static DialogueManager GetInstance() => instance;
 
     private void Start()
     {
@@ -45,13 +39,10 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         if (!dialogueIsPlaying)
-        {
             return;
-        }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Space))
             ContinueStory();
-        }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -69,6 +60,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        //  Notify listeners that the dialogue ended
+        OnDialogueComplete?.Invoke();
     }
 
     private void ContinueStory()
