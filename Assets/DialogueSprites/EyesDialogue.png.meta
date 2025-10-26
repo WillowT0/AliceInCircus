@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -7855187910134859238
     second: EyesDialogue_0
-  - first:
-      213: -366351675005503963
-    second: EyesDialogue_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -107,9 +104,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 281
-        width: 418
-        height: 277
+        y: 0
+        width: 291
+        height: 407
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,28 +117,6 @@ TextureImporter:
       bones: []
       spriteID: a1af77cd634ccf290800000000000000
       internalID: -7855187910134859238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EyesDialogue_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 418
-        height: 155
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5267d64b7157aeaf0800000000000000
-      internalID: -366351675005503963
       vertices: []
       indices: 
       edges: []
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       EyesDialogue_0: -7855187910134859238
-      EyesDialogue_1: -366351675005503963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

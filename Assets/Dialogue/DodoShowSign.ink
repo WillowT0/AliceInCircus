@@ -1,3 +1,3 @@
-It says... "Dodo's amazing Pirate Show!"... 
-There's also a wanted person poster. 
-I've never seen a real dodo before, I wonder if he can fly?
+It says... "Dodo's amazing Pirate Show!"... #speaker:Alice #portrait:Alice
+Oh my! There's also a flyer. It looks like a Wanted Person poster... 
+I wonder if it is just for promotion...? 

@@ -387,6 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7c2288d0c78a344bb6f3a99fb0ed9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &217481535 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7717280652948303659, guid: 68fa789f86d5ff04b85fa2f2973310d5, type: 3}
+  m_PrefabInstance: {fileID: 485682439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254377951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,6 +1714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6010270144850828798, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
   m_PrefabInstance: {fileID: 1058197833}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1088471842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7441670914396391006, guid: 68fa789f86d5ff04b85fa2f2973310d5, type: 3}
+  m_PrefabInstance: {fileID: 485682439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1094048687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2689,14 @@ PrefabInstance:
       propertyPath: dialoguePanel
       value: 
       objectReference: {fileID: 1732109329}
+    - target: {fileID: 880301178062507198, guid: a48a03cf821a3ed4bb65199d4d3df3f5, type: 3}
+      propertyPath: displayNameText
+      value: 
+      objectReference: {fileID: 1088471842}
+    - target: {fileID: 880301178062507198, guid: a48a03cf821a3ed4bb65199d4d3df3f5, type: 3}
+      propertyPath: portraitAnimator
+      value: 
+      objectReference: {fileID: 217481535}
     - target: {fileID: 1979262274595996762, guid: a48a03cf821a3ed4bb65199d4d3df3f5, type: 3}
       propertyPath: m_Name
       value: Managers
