@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Ink.Runtime;
@@ -9,22 +10,24 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI displayNameText;
+    [SerializeField] private Animator portraitAnimator;
 
     private Story currentStory;
-
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
-
-    // Event that other scripts can listen to
     public event Action OnDialogueComplete;
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "portrait";
 
     private void Awake()
     {
-        // Ensure only one instance exists, and replace any old ones after retry
         if (instance != null && instance != this)
         {
-            Destroy(instance.gameObject);
+            Destroy(gameObject);
+            return;
         }
 
         instance = this;
@@ -36,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
+
         if (dialoguePanel != null)
             dialoguePanel.SetActive(false);
         else
@@ -47,7 +51,6 @@ public class DialogueManager : MonoBehaviour
         if (!dialogueIsPlaying)
             return;
 
-        //  Log when input is detected (for debugging)
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("SPACE pressed while dialogue active");
@@ -66,7 +69,6 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-
         ContinueStory();
     }
 
@@ -76,8 +78,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        if (displayNameText != null)
+            displayNameText.text = "";
 
-        // Notify listeners that dialogue ended
         OnDialogueComplete?.Invoke();
     }
 
@@ -86,10 +89,41 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             dialogueText.text = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
             StartCoroutine(ExitDialogueMode());
+        }
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogWarning($"Tag could not be parsed: '{tag}'");
+                continue;
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    if (displayNameText != null)
+                        displayNameText.text = tagValue;
+                    break;
+                case PORTRAIT_TAG:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning($"Unhandled tag: {tagKey}");
+                    break;
+            }
         }
     }
 }

@@ -7,16 +7,16 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-          
-        }
+
+        instance = this;
+        // no DontDestroyOnLoad() resets with each new scene
     }
+
 
     public void NextLevel1()
     {
