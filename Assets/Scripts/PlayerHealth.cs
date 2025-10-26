@@ -57,8 +57,17 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player died!");
-        // TODO: Add respawn or game over logic here
+        GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+        if (gameOver != null)
+        {
+            gameOver.ShowGameOver();
+        }
+
+        // Optionally disable player controls
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
+
 
     private IEnumerator FlashRed()
     {

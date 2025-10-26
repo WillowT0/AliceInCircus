@@ -6,7 +6,7 @@ using Ink.Runtime;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Header("DialogueUI")]
+    [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
@@ -16,16 +16,19 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
 
-    //  Event that other scripts can listen to
+    // Event that other scripts can listen to
     public event Action OnDialogueComplete;
 
     private void Awake()
     {
-        if (instance != null)
+        // Ensure only one instance exists, and replace any old ones after retry
+        if (instance != null && instance != this)
         {
-            Debug.LogWarning("Found more than one Dialogue Manager in the Scene");
+            Destroy(instance.gameObject);
         }
+
         instance = this;
+        Debug.Log("DialogueManager initialized: " + gameObject.name);
     }
 
     public static DialogueManager GetInstance() => instance;
@@ -33,7 +36,10 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
+        else
+            Debug.LogError("DialogueManager: Dialogue Panel not assigned!");
     }
 
     private void Update()
@@ -41,12 +47,22 @@ public class DialogueManager : MonoBehaviour
         if (!dialogueIsPlaying)
             return;
 
+        //  Log when input is detected (for debugging)
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("SPACE pressed while dialogue active");
             ContinueStory();
+        }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        if (inkJSON == null)
+        {
+            Debug.LogError("DialogueManager: No Ink JSON assigned!");
+            return;
+        }
+
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -61,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
 
-        //  Notify listeners that the dialogue ended
+        // Notify listeners that dialogue ended
         OnDialogueComplete?.Invoke();
     }
 

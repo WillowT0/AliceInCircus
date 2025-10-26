@@ -17,21 +17,39 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private GameObject npcVisual; // Assign the sprite or model here
 
     private bool playerInRange;
-    private bool npcActive = true; // Flag to track if NPC is still active
+    private bool npcActive; // tracks if NPC can be interacted with
 
-    private void Awake()
+    private IEnumerator Start()
     {
+        // Wait one frame to ensure DialogueManager exists
+        yield return null;
+
+        // Reset NPC state on scene load
         playerInRange = false;
+        npcActive = true;
+
         if (visualCue != null)
             visualCue.SetActive(false);
+
+        if (npcVisual != null)
+            npcVisual.SetActive(true);
     }
 
     private void Update()
     {
-        // Only allow interaction if NPC is still active
+        // Only allow interaction if NPC is active
         if (!npcActive) return;
 
-        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
+        // Ensure DialogueManager exists
+        DialogueManager dialogueManager = DialogueManager.GetInstance();
+        if (dialogueManager == null)
+        {
+            Debug.LogWarning("DialogueManager not found or not initialized yet!");
+            return;
+        }
+
+        // Handle player input when in range
+        if (playerInRange && !dialogueManager.dialogueIsPlaying)
         {
             if (visualCue != null) visualCue.SetActive(true);
 
@@ -46,15 +64,15 @@ public class DialogueTrigger : MonoBehaviour
                         if (visualCue != null) visualCue.SetActive(false);
 
                         // Start dialogue for having the item
-                        DialogueManager.GetInstance().EnterDialogueMode(dialogueIfHasItem);
+                        dialogueManager.EnterDialogueMode(dialogueIfHasItem);
 
-                        // Hide NPC visual and visual cue after dialogue finishes
+                        // Hide NPC visual and cue after dialogue finishes
                         StartCoroutine(RemoveNPCAfterDialogue());
                     }
                     else
                     {
                         // Start dialogue for missing item
-                        DialogueManager.GetInstance().EnterDialogueMode(dialogueIfMissingItem);
+                        dialogueManager.EnterDialogueMode(dialogueIfMissingItem);
                     }
                 }
                 else
@@ -72,7 +90,7 @@ public class DialogueTrigger : MonoBehaviour
     private IEnumerator RemoveNPCAfterDialogue()
     {
         // Wait until the dialogue finishes
-        while (DialogueManager.GetInstance().dialogueIsPlaying)
+        while (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().dialogueIsPlaying)
         {
             yield return null;
         }
