@@ -1,0 +1,3 @@
+It says... "Dodo's amazing Pirate Show!"... 
+There's also a wanted person poster. 
+I've never seen a real dodo before, I wonder if he can fly?
