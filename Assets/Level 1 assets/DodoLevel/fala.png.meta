@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 253979e5d0743db4da27a19f5fd3ec3c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8690426215480298120
+    second: fala_0
+  - first:
+      213: -9027296644151481237
+    second: fala_1
+  - first:
+      213: -2021560210133813973
+    second: fala_2
+  - first:
+      213: -5200341004037464949
+    second: fala_3
+  - first:
+      213: -9019505966128118572
+    second: fala_4
+  - first:
+      213: -7693487326334411458
+    second: fala_5
+  - first:
+      213: -1178770033960721582
+    second: fala_6
+  - first:
+      213: -1046180950215219932
+    second: fala_7
+  - first:
+      213: -4627922312509837585
+    second: fala_8
+  - first:
+      213: 3557654773623805811
+    second: fala_9
+  - first:
+      213: -2376782092641592284
+    second: fala_10
+  - first:
+      213: -724593022132489008
+    second: fala_11
+  - first:
+      213: 3318467746509278640
+    second: fala_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fala_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8424
+        height: 556
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4f0154c7ab1f5f0800000000000000
+      internalID: -724593022132489008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a230fa505c174a84e812f03510970ca4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fala_0: 8690426215480298120
+      fala_1: -9027296644151481237
+      fala_10: -2376782092641592284
+      fala_11: -724593022132489008
+      fala_12: 3318467746509278640
+      fala_2: -2021560210133813973
+      fala_3: -5200341004037464949
+      fala_4: -9019505966128118572
+      fala_5: -7693487326334411458
+      fala_6: -1178770033960721582
+      fala_7: -1046180950215219932
+      fala_8: -4627922312509837585
+      fala_9: 3557654773623805811
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
