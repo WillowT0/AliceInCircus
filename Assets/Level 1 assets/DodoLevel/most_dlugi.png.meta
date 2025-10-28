@@ -1,13 +1,28 @@
 fileFormatVersion: 2
-guid: cfac2d7b1e50a914c8eab90287c4aad1
+guid: bf77735c3d8f8894d9f3ec0afe25fc3f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4755793533777715276
-    second: star_clown_hat_0
+      213: 767951289502484926
+    second: most_dlugi_0
   - first:
-      213: -782757104627734291
-    second: star_clown_hat_1
+      213: 3972042781687987411
+    second: most_dlugi_1
+  - first:
+      213: -7772109994010970363
+    second: most_dlugi_2
+  - first:
+      213: -7606964831681736702
+    second: most_dlugi_3
+  - first:
+      213: 2688995050330046591
+    second: most_dlugi_4
+  - first:
+      213: 1227068359725365444
+    second: most_dlugi_5
+  - first:
+      213: 3433996057121330334
+    second: most_dlugi_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: star_clown_hat_1
+      name: most_dlugi_4
       rect:
         serializedVersion: 2
-        x: 116
-        y: 98
-        width: 596
-        height: 531
+        x: 0
+        y: 0
+        width: 1672
+        height: 612
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +133,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de820418f861325f0800000000000000
-      internalID: -782757104627734291
+      spriteID: f70c4b950ca315520800000000000000
+      internalID: 2688995050330046591
       vertices: []
       indices: 
       edges: []
@@ -128,7 +143,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d1dba06424935348a1d1af4561a34ec
+    spriteID: 9e816892fdaa85f409327338c3632888
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +153,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      star_clown_hat_0: -4755793533777715276
-      star_clown_hat_1: -782757104627734291
+      most_dlugi_0: 767951289502484926
+      most_dlugi_1: 3972042781687987411
+      most_dlugi_2: -7772109994010970363
+      most_dlugi_3: -7606964831681736702
+      most_dlugi_4: 2688995050330046591
+      most_dlugi_5: 1227068359725365444
+      most_dlugi_6: 3433996057121330334
+      most_dlugi_7: -1247981770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: cfac2d7b1e50a914c8eab90287c4aad1
+guid: 2ef0251b9eef3ff4fae875a6974df537
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4755793533777715276
-    second: star_clown_hat_0
+      213: -3155160288872215500
+    second: StarClownDialogue_0
   - first:
-      213: -782757104627734291
-    second: star_clown_hat_1
+      213: 5827955205076393636
+    second: StarClownDialogue_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: star_clown_hat_1
+      name: StarClownDialogue_0
       rect:
         serializedVersion: 2
-        x: 116
-        y: 98
-        width: 596
-        height: 531
+        x: 0
+        y: 131
+        width: 291
+        height: 276
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de820418f861325f0800000000000000
-      internalID: -782757104627734291
+      spriteID: 43c4a5c1f6e9634d0800000000000000
+      internalID: -3155160288872215500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarClownDialogue_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 291
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae9775916e01e050800000000000000
+      internalID: 5827955205076393636
       vertices: []
       indices: 
       edges: []
@@ -128,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d1dba06424935348a1d1af4561a34ec
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      star_clown_hat_0: -4755793533777715276
-      star_clown_hat_1: -782757104627734291
+      StarClownDialogue_0: -3155160288872215500
+      StarClownDialogue_1: 5827955205076393636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

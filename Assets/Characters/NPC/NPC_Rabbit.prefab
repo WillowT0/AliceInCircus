@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 17332259383245197}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.504309, y: -2.3329268, z: -3.5059566}
-  m_LocalScale: {x: 0.7434, y: 0.7434, z: 0.7434}
+  m_LocalPosition: {x: 9.037, y: -1.9875, z: -3.5059566}
+  m_LocalScale: {x: 30.093056, y: 36.51301, z: 0.7434}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6010270144850828798}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 3109639798371542473, guid: aebb0770b996b7e49878f55cca1489bc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.3989367, g: 0.96981126, b: 0.15187603, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -202,7 +202,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 25.196339, y: -4.807521}
+  m_Offset: {x: 23.614332, y: -4.3447003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -212,7 +212,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.130251, y: 6.2650623}
+  m_Size: {x: 4.9282875, y: 5.3394213}
   m_EdgeRadius: 0
 --- !u!114 &7460113095231352780
 MonoBehaviour:
@@ -227,9 +227,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 3484786306364989905}
-  dialogueIfHasItem: {fileID: 4900000, guid: 1eb375d3590710741be024ec0d4a3aaa, type: 3}
-  dialogueIfMissingItem: {fileID: 4900000, guid: 5ae2c6fb614b88b4b9c956d811b340d6, type: 3}
-  itemToCheck: clock
+  dialogueIfHasItem: {fileID: 4900000, guid: 64cfd1a0a74a68b4392225734145e138, type: 3}
+  dialogueIfMissingItem: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
+  itemToCheck: cards
   npcVisual: {fileID: 17332259383245197}
 --- !u!1 &3484786306364989905
 GameObject:
@@ -257,7 +257,7 @@ Transform:
   m_GameObject: {fileID: 3484786306364989905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.165681, y: -2.24, z: -3.5059566}
+  m_LocalPosition: {x: 12.34, y: 0.86, z: -3.5059566}
   m_LocalScale: {x: 0.12019999, y: 0.12019999, z: 0.12019999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -307,7 +307,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -2278566297644842510, guid: 13e673b180a9d2b499fcf46a01c62e0e, type: 3}
+  m_Sprite: {fileID: 3424849650988310628, guid: 9b0ab663610dfdd46b9b99255e0557c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

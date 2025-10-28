@@ -1,0 +1,1 @@
+You'll be a star they said... #speaker:A Clown Star #portrait:ClownStar
