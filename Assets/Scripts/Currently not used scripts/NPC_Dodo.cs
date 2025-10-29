@@ -47,7 +47,7 @@ public class NPC_Dodo : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player doesn’t have the required item.");
+            Debug.Log("Player doesnï¿½t have the required item.");
         }
     }
 
@@ -67,21 +67,21 @@ public class NPC_Dodo : MonoBehaviour
             memoryMiniGameUI.SetActive(true);
 
             // Try to find the CardController on the Canvas or its children
-            CardController cardController = memoryMiniGameUI.GetComponent<CardController>();
-            if (cardController == null)
-            {
-                cardController = memoryMiniGameUI.GetComponentInChildren<CardController>();
-            }
-
-            if (cardController != null)
-            {
+           // CardController cardController = memoryMiniGameUI.GetComponent<CardController>();
+         //   if (cardController == null)
+        //    {
+        //        cardController = memoryMiniGameUI.GetComponentInChildren<CardController>();
+//}
+//
+       //     if (cardController != null)
+        //    {
                 // Initialize the memory minigame
-                cardController.InitializeMinigame();
-            }
-            else
-            {
-                Debug.LogWarning("No CardController found on Memory MiniGame UI or its children!");
-            }
+         //       cardController.InitializeMinigame();
+        //    }
+        //    else
+         //   {
+       //         Debug.LogWarning("No CardController found on Memory MiniGame UI or its children!");
+     //       }
         }
         else
         {
