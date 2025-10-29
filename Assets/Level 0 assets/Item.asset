@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemID: clock
   itemName: Pocket Watch
   itemCount: 1
-  itemIcon: {fileID: 8581363780399802525, guid: b475289fdb8f8f64aa5b7ba9d8de36f5, type: 3}
+  itemIcon: {fileID: -2785916926383414133, guid: 3994142f7fbf2224aa67abcab033dd4f, type: 3}
   isStackable: 1
