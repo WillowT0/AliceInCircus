@@ -18,12 +18,11 @@ public class CardController : MonoBehaviour
 
     private void Start()
     {
-        // Intentionally left blank or you can log:
-        Debug.Log("CardController ready (waiting for InitializeMinigame)");
+        Debug.Log("CardController ready — starting Memory Minigame automatically.");
+        InitializeMinigame(); 
     }
 
-
-    //Call this when the minigame starts
+    // Initialize and start the memory game
     public void InitializeMinigame()
     {
         // Clear old cards (if replayed)
@@ -46,7 +45,7 @@ public class CardController : MonoBehaviour
 
     public void SetSelected(Card card)
     {
-        if (!gameActive) return; // Ignore clicks before game starts
+        if (!gameActive) return;
         if (card.isSelected) return;
 
         card.Show();
@@ -72,24 +71,31 @@ public class CardController : MonoBehaviour
 
         if (a.iconSprite == b.iconSprite)
         {
-            // Matched
             matchCounts++;
 
             if (matchCounts >= spritePairs.Count / 2)
             {
                 Debug.Log("All pairs matched — player wins!");
                 gameActive = false;
-
-                // Notify the NPC that the minigame is complete
-                FindObjectOfType<NPC_Dodo>().OnMinigameComplete(true);
+                OnGameComplete();
             }
         }
         else
         {
-            // Not matched — hide them again
             a.Hide();
             b.Hide();
         }
+    }
+
+    private void OnGameComplete()
+    {
+     
+    }
+
+    private IEnumerator RestartAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        InitializeMinigame();
     }
 
     private void PrepareSprites()
