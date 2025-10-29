@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7f511438080876499fca20a83149427
+guid: 663291fb3f7baac48a04c188b7f14a98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7367613113457246158
-    second: StarClownHatDialogue_0
+      213: -8040952166415117496
+    second: dODODialogue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarClownHatDialogue_0
+      name: dODODialogue_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 291
+        width: 290
         height: 407
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2300fd998eaf0c990800000000000000
-      internalID: -7367613113457246158
+      spriteID: 8435be08b9cc86090800000000000000
+      internalID: -8040952166415117496
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 69c2b07ae5a325f4792a7fd9ef7bd97c
+    spriteID: d68f85bceb916cd4f9dc867a4a6bfcde
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarClownHatDialogue_0: -7367613113457246158
+      dODODialogue_0: -8040952166415117496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

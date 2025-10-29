@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7f511438080876499fca20a83149427
+guid: 972efa630f475ab46aa18891f7b9e18a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7367613113457246158
-    second: StarClownHatDialogue_0
+      213: 7568738174981550048
+    second: CheshireDialogue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarClownHatDialogue_0
+      name: CheshireDialogue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2300fd998eaf0c990800000000000000
-      internalID: -7367613113457246158
+      spriteID: 0efa6bde44f890960800000000000000
+      internalID: 7568738174981550048
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 69c2b07ae5a325f4792a7fd9ef7bd97c
+    spriteID: 477767c6dfa5a494cbc0f4b00214f036
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarClownHatDialogue_0: -7367613113457246158
+      CheshireDialogue_0: 7568738174981550048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
