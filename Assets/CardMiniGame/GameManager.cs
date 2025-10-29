@@ -35,14 +35,12 @@ public class GameManager : MonoBehaviour
 
         if (firstCard.id == secondCard.id)
         {
-            // dopasowane
             firstCard = null;
             secondCard = null;
         }
         else
         {
-            // nie dopasowane, odwracamy po 1 sek
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             firstCard.Hide();
             secondCard.Hide();
             firstCard = null;
