@@ -944,6 +944,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &186377400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 186377401}
+  - component: {fileID: 186377402}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &186377401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186377400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1453201383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &186377402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186377400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bd64c379e44304dadc5ed954808922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcVisual: {fileID: 656153241}
+  newSpriteAfterWin: {fileID: -4524002299704006508, guid: f3eb36c434adef44d977c03577ff1338, type: 3}
+  memoryGameCanvas: {fileID: 818848481}
+  dialogueBeforeCards: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
+  dialogueAfterCards: {fileID: 4900000, guid: 64cfd1a0a74a68b4392225734145e138, type: 3}
+  dialogueAfterWin: {fileID: 4900000, guid: f12e89bc24d6ce345aaefec78b0f06ee, type: 3}
+  requiredItem: cards
+  isActive: 1
+  hasWonGame: 0
 --- !u!1 &200127381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,6 +1307,7 @@ MonoBehaviour:
   id: 1
   frontImage: {fileID: 418036550}
   backImage: {fileID: 1583813654}
+  IsMatched: 0
 --- !u!114 &220792799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,6 +1534,7 @@ MonoBehaviour:
   id: 2
   frontImage: {fileID: 483457518}
   backImage: {fileID: 1556341583}
+  IsMatched: 0
 --- !u!114 &227740358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3097,11 +3152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -54.71
+      value: -54.78
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.42
+      value: 20.63
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3153,11 +3208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3017000929195242680, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 4.61
+      value: 4.7
       objectReference: {fileID: 0}
     - target: {fileID: 3017000929195242680, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.5
+      value: 4.77
       objectReference: {fileID: 0}
     - target: {fileID: 7427859322739218404, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_Name
@@ -3329,6 +3384,7 @@ MonoBehaviour:
   id: 3
   frontImage: {fileID: 133528528}
   backImage: {fileID: 1490051314}
+  IsMatched: 0
 --- !u!114 &543365384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3467,6 +3523,7 @@ MonoBehaviour:
   id: 2
   frontImage: {fileID: 1467103020}
   backImage: {fileID: 2071268611}
+  IsMatched: 0
 --- !u!114 &544810370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,6 +3673,7 @@ MonoBehaviour:
   id: 3
   frontImage: {fileID: 1715786467}
   backImage: {fileID: 593382391}
+  IsMatched: 0
 --- !u!114 &567718460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4093,6 +4151,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 088a3e6820af84648a3e8f528d59869f, type: 3}
+--- !u!1 &656153241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 17332259383245197, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+  m_PrefabInstance: {fileID: 862365391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &682681999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,6 +4247,11 @@ SpriteRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5368639755123702184, guid: 3115918d71a4e2b4cbac4b98c515dea2, type: 3}
   m_PrefabInstance: {fileID: 1443024661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &762180390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 815957738863159321, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+  m_PrefabInstance: {fileID: 862365391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &768446257
 GameObject:
@@ -4545,11 +4613,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.991272
+      value: -34.001816
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7725825
+      value: -3.7726326
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4899,6 +4967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2047360289}
     m_Modifications:
+    - target: {fileID: 17332259383245197, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: m_Name
+      value: Dodo
+      objectReference: {fileID: 0}
     - target: {fileID: 336990478676151075, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5004,6 +5076,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: itemToCheck
       value: cards
       objectReference: {fileID: 0}
@@ -5025,8 +5101,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6010270144850828798, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 186377401}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 815957738863159321, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1453201385}
+    - targetCorrespondingSourceObject: {fileID: 1648078837393759133, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1017774692}
   m_SourcePrefab: {fileID: 100100000, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
 --- !u!1 &887002831
 GameObject:
@@ -5250,11 +5335,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.61
+      value: -51.47
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.73
+      value: -7.96
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5780,6 +5865,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6010270144850828798, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
   m_PrefabInstance: {fileID: 109838979}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017774688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1648078837393759133, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+  m_PrefabInstance: {fileID: 862365391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017774692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017774688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a6a9955ffd74246b4f14a06f4b033c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualCue: {fileID: 1680478832}
+  dialogueBeforeCards: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
+  dialogueAfterCards: {fileID: 4900000, guid: 64cfd1a0a74a68b4392225734145e138, type: 3}
+  dialogueAfterWin: {fileID: 4900000, guid: f12e89bc24d6ce345aaefec78b0f06ee, type: 3}
+  itemToCheck: cards
+  dodoController: {fileID: 186377402}
 --- !u!1001 &1047009332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6183,6 +6291,7 @@ MonoBehaviour:
   id: 1
   frontImage: {fileID: 432027188}
   backImage: {fileID: 46445441}
+  IsMatched: 0
 --- !u!114 &1096737252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6488,11 +6597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.61
+      value: -51.47
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.73
+      value: -7.96
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6944,18 +7053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1e0be433ef6f84f9bd942c59946c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
-  gridTransform: {fileID: 0}
-  hiddenSprite: {fileID: 0}
-  sprites:
-  - {fileID: 8584576177183001853, guid: 8b066bf3817788a41a0e83d1131fd6f8, type: 3}
-  - {fileID: 3109639798371542473, guid: aebb0770b996b7e49878f55cca1489bc, type: 3}
-  - {fileID: -145383820636534694, guid: da9ec5ad22436c34888665f6cbc1aec8, type: 3}
-  spritePairs: []
-  firstSelected: {fileID: 0}
-  secondSelected: {fileID: 0}
-  matchCounts: 0
-  gameActive: 0
 --- !u!114 &1379321764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7472,6 +7569,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6010270144850828798, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
   m_PrefabInstance: {fileID: 862365391}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1453201385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762180390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bd64c379e44304dadc5ed954808922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcVisual: {fileID: 0}
+  newSpriteAfterWin: {fileID: 0}
+  memoryGameCanvas: {fileID: 0}
+  dialogueBeforeCards: {fileID: 0}
+  dialogueAfterCards: {fileID: 0}
+  dialogueAfterWin: {fileID: 0}
+  requiredItem: cards
+  isActive: 1
+  hasWonGame: 0
 --- !u!1001 &1464931660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8499,6 +8617,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1680478832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3484786306364989905, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+  m_PrefabInstance: {fileID: 862365391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1693014524
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,22 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class Card : MonoBehaviour
 {
-    public int id; // unikalny ID dla pary
+    public int id;
     public Image frontImage;
     public Image backImage;
+
+    [HideInInspector]
+    public bool IsMatched = false;
+
     private Button button;
 
     private void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
+
+        Hide();
     }
 
     public void OnClick()
     {
-        GameManager.instance.CardRevealed(this);
+        if (!IsMatched)
+            GameManager.instance.CardRevealed(this);
     }
 
     public void Reveal()
