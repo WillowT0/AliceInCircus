@@ -3,13 +3,16 @@ using UnityEngine;
 public class NPC_CheckItem : MonoBehaviour
 {
     [Header("Ustawienia przedmiotu")]
-    public string itemToCheck = "clock"; // ID przedmiotu do sprawdzenia
+    public string itemToCheck = "clock";
 
     [Header("Canvas do otwarcia")]
-    public GameObject canvasToOpen;      // Canvas przypisany w Inspectorze
+    public GameObject canvasToOpen;
+
+    [Header("Finish Point")]
+    public FinishPoint finishPoint; // Drag the FinishPoint object here in the Inspector
 
     [Header("Debug opcje")]
-    public bool debugMode = true;        // Czy debugowanie jest włączone
+    public bool debugMode = true;
 
     private InventoryManager inventoryManager;
 
@@ -43,6 +46,7 @@ public class NPC_CheckItem : MonoBehaviour
         {
             Debug.Log("[DEBUG] Wciśnięto U — symulacja posiadania itemu!");
             OpenCanvas();
+            UnlockFinishPoint();
         }
     }
 
@@ -52,6 +56,7 @@ public class NPC_CheckItem : MonoBehaviour
         {
             Debug.Log("Gracz ma item!");
             OpenCanvas();
+            UnlockFinishPoint();
         }
         else
         {
@@ -70,4 +75,21 @@ public class NPC_CheckItem : MonoBehaviour
             Debug.LogWarning("Brak przypisanego Canvasu w Inspectorze!");
         }
     }
+
+    //  Inform FinishPoint that NPC check was done
+    void UnlockFinishPoint()
+    {
+        Debug.Log("[NPC] Trying to unlock FinishPoint...");
+
+        if (finishPoint != null)
+        {
+            finishPoint.AllowNextLevel();
+            Debug.Log("[NPC] FinishPoint unlocked!");
+        }
+        else
+        {
+            Debug.LogWarning("[NPC] FinishPoint reference is missing!");
+        }
+    }
+
 }

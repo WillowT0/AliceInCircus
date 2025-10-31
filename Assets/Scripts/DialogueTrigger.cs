@@ -14,17 +14,18 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private string itemToCheck;
 
     [Header("NPC Visual")]
-    [SerializeField] private GameObject npcVisual; // Assign the sprite or model here
+    [SerializeField] private GameObject npcVisual;
+
+    [Header("Finish Point Reference")]
+    [SerializeField] private FinishPoint finishPoint; //  Assign in Inspector
 
     private bool playerInRange;
-    private bool npcActive; // tracks if NPC can be interacted with
+    private bool npcActive;
+    private bool hasUnlockedFinish; //  Prevent double unlocks
 
     private IEnumerator Start()
     {
-        // Wait one frame to ensure DialogueManager exists
         yield return null;
-
-        // Reset NPC state on scene load
         playerInRange = false;
         npcActive = true;
 
@@ -37,10 +38,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        // Only allow interaction if NPC is active
         if (!npcActive) return;
 
-        // Ensure DialogueManager exists
         DialogueManager dialogueManager = DialogueManager.GetInstance();
         if (dialogueManager == null)
         {
@@ -48,7 +47,6 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        // Handle player input when in range
         if (playerInRange && !dialogueManager.dialogueIsPlaying)
         {
             if (visualCue != null) visualCue.SetActive(true);
@@ -60,18 +58,18 @@ public class DialogueTrigger : MonoBehaviour
                 {
                     if (inventoryManager.HasItem(itemToCheck))
                     {
-                        // Hide visual cue immediately
+                        // Hide visual cue
                         if (visualCue != null) visualCue.SetActive(false);
 
                         // Start dialogue for having the item
                         dialogueManager.EnterDialogueMode(dialogueIfHasItem);
 
-                        // Hide NPC visual and cue after dialogue finishes
-                        StartCoroutine(RemoveNPCAfterDialogue());
+                        // Wait for dialogue to finish, then unlock finish point
+                        StartCoroutine(UnlockAfterDialogue());
                     }
                     else
                     {
-                        // Start dialogue for missing item
+                        // Dialogue when missing the item
                         dialogueManager.EnterDialogueMode(dialogueIfMissingItem);
                     }
                 }
@@ -87,7 +85,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator RemoveNPCAfterDialogue()
+    private IEnumerator UnlockAfterDialogue()
     {
         // Wait until the dialogue finishes
         while (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().dialogueIsPlaying)
@@ -95,22 +93,24 @@ public class DialogueTrigger : MonoBehaviour
             yield return null;
         }
 
-        // Hide NPC visual
+        //  Unlock the FinishPoint once dialogue ends
+        if (!hasUnlockedFinish && finishPoint != null)
+        {
+            finishPoint.AllowNextLevel();
+            hasUnlockedFinish = true;
+            Debug.Log("[Rabbit] Player talked to me — FinishPoint unlocked!");
+        }
+
+        // Optionally hide the NPC after dialogue
         if (npcVisual != null)
             npcVisual.SetActive(false);
 
-        // Ensure visual cue is hidden
-        if (visualCue != null)
-            visualCue.SetActive(false);
-
-        // Disable further interactions
         npcActive = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (!npcActive) return;
-
         if (collider.CompareTag("Player"))
             playerInRange = true;
     }
@@ -118,7 +118,6 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (!npcActive) return;
-
         if (collider.CompareTag("Player"))
             playerInRange = false;
     }
