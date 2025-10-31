@@ -1,16 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Trampoline : MonoBehaviour
 {
-    private float bounce = 20f;
+    [SerializeField] private float bounceVelocity = 30f; // Higher than normal jump
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+
+            if (rb != null)
+            {
+                // Make bounce higher than normal jump
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceVelocity);
+
+                // Reset jump state in PlayerController
+                if (player != null)
+                    player.OnJumpBounce();
+            }
         }
     }
 }

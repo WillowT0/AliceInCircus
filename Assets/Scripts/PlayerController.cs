@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,16 +9,23 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
-    public float airWalkSpeed = 5f;
+    public float airWalkSpeed = 7f;
 
     [Header("Jump Settings")]
-    [SerializeField] private float jumpImpulse = 14f; // Higher for snappier jumps
-    [SerializeField] private float fallMultiplier = 2.5f; // Faster fall
-    [SerializeField] private float lowJumpMultiplier = 2f; // Variable jump height
-    [SerializeField] private float coyoteTime = 0.1f; // Forgiving jump after leaving ground
+    [SerializeField] private float jumpImpulse = 14f;
+    [SerializeField] private float gravityScale = 3f;
+    [SerializeField] private float fallGravityMult = 2.5f;
+    [SerializeField] private float jumpCutGravityMult = 3f;
+    [SerializeField] private float jumpHangGravityMult = 0.5f;
+    [SerializeField] private float jumpHangTimeThreshold = 1f;
+    [SerializeField] private float maxFallSpeed = 20f;
+    [SerializeField] private float maxFastFallSpeed = 25f;
+    [SerializeField] private float fastFallGravityMult = 3.5f;
+    [SerializeField] private float coyoteTime = 0.1f;
 
     private Vector2 moveInput;
     private bool isJumpHeld;
+    private bool isJumpCut;
     private float coyoteTimeCounter;
 
     private Rigidbody2D rb;
@@ -56,23 +63,13 @@ public class PlayerController : MonoBehaviour
         private set
         {
             if (_isFacingRight != value)
-            {
                 transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-            }
             _isFacingRight = value;
         }
     }
 
-    public float CurrentMoveSpeed
-    {
-        get
-        {
-            if (touchingDirections.IsGrounded)
-                return IsMoving ? (IsRunning ? runSpeed : walkSpeed) : 0f;
-            else
-                return airWalkSpeed;
-        }
-    }
+    public float CurrentMoveSpeed =>
+        touchingDirections.IsGrounded ? (IsRunning ? runSpeed : walkSpeed) : airWalkSpeed;
 
     private void Awake()
     {
@@ -83,49 +80,77 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-    
         if (DialogueManager.GetInstance().dialogueIsPlaying)
-        {
             GetComponent<PlayerInput>().enabled = false;
-        }
         else
-        {
             GetComponent<PlayerInput>().enabled = true;
-        }
-    
 
-        // Coyote time counter
+        // Handle coyote time
         if (touchingDirections.IsGrounded)
             coyoteTimeCounter = coyoteTime;
         else
             coyoteTimeCounter -= Time.deltaTime;
     }
 
+
+
     private void FixedUpdate()
     {
-        Vector2 velocity = rb.linearVelocity;
+        HandleGravity();
+        HandleMovement();
+    }
 
-        // Gravity adjustments for better jump feel
-        if (velocity.y < 0f)
-        {
-            // Falling faster
-            velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
-        }
-        else if (velocity.y > 0f && !isJumpHeld)
-        {
-            // Short jump if released early
-            velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
-        }
-
-        // Horizontal movement
+    private void HandleMovement()
+    {
         float targetX = moveInput.x * CurrentMoveSpeed;
-        velocity.x = Mathf.Lerp(velocity.x, targetX, 0.2f); // Smooth air movement
-
-        rb.linearVelocity = velocity;
-
+        float newX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.2f);
+        rb.linearVelocity = new Vector2(newX, rb.linearVelocity.y);
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
+    #region GRAVITY
+    private void HandleGravity()
+    {
+        float gravityMultiplier = 1f;
+
+        if (rb.linearVelocity.y < 0 && moveInput.y < 0)
+        {
+            // Fast fall when pressing down
+            gravityMultiplier = fastFallGravityMult;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFastFallSpeed));
+        }
+        else if (isJumpCut)
+        {
+            // Higher gravity when jump is released early
+            gravityMultiplier = jumpCutGravityMult;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
+        }
+        else if (rb.linearVelocity.y > 0 && Mathf.Abs(rb.linearVelocity.y) < jumpHangTimeThreshold)
+        {
+            // Hang time for smoother jump apex
+            gravityMultiplier = jumpHangGravityMult;
+        }
+        else if (rb.linearVelocity.y < 0)
+        {
+            // Normal falling gravity
+            gravityMultiplier = fallGravityMult;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
+        }
+        else
+        {
+            gravityMultiplier = 1f;
+        }
+
+        SetGravityScale(gravityScale * gravityMultiplier);
+    }
+
+    private void SetGravityScale(float scale)
+    {
+        rb.gravityScale = scale;
+    }
+    #endregion
+
+    #region INPUT
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -152,19 +177,28 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
             isJumpHeld = true;
+            isJumpCut = false;
             coyoteTimeCounter = 0f;
         }
         else if (context.canceled)
         {
             isJumpHeld = false;
+            isJumpCut = rb.linearVelocity.y > 0; // Trigger cut if player is ascending
         }
     }
+
+    public void OnJumpBounce()
+    {
+        isJumpHeld = true;
+        isJumpCut = false;
+        coyoteTimeCounter = 0f; // reset coyote time so player can jump immediately after
+    }
+
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
-        {
             Debug.Log("Interact button pressed.");
-        }
     }
+    #endregion
 }
