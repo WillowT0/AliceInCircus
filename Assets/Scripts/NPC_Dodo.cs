@@ -37,20 +37,20 @@ public class NPC_DodoController : MonoBehaviour
             memoryGameCanvas.SetActive(false);
     }
 
-    //  Call this from your DialogueTrigger or directly when pressing E
+    // Call this from your DialogueTrigger or directly when pressing E
     public void Interact()
     {
         if (!isActive) return;
 
         if (hasWonGame)
         {
-            // Already finished the game  final dialogue
+            // Already finished the game -> final dialogue
             if (dialogueAfterWin != null)
                 dialogueManager.EnterDialogueMode(dialogueAfterWin);
         }
         else if (inventoryManager != null && inventoryManager.HasItem(requiredItem))
         {
-            // Player has the “cards” start dialogue that leads to minigame
+            // Player has the “cards” -> start dialogue that leads to minigame
             if (dialogueAfterCards != null)
             {
                 dialogueManager.OnDialogueComplete += StartMemoryGame;
@@ -68,16 +68,35 @@ public class NPC_DodoController : MonoBehaviour
     public void StartMemoryGame()
     {
         dialogueManager.OnDialogueComplete -= StartMemoryGame;
-        StartCoroutine(StartMiniGameAfterDelay());
+        StartCoroutine(WaitForDialogueAndStartGame());
     }
 
+    private IEnumerator WaitForDialogueAndStartGame()
+    {
+        // Wait until dialogue is finished
+        while (dialogueManager.dialogueIsPlaying)
+            yield return null;
+
+        // Now start the memory game after dialogue ends
+        yield return StartCoroutine(StartMiniGameAfterDelay());
+    }
 
     private IEnumerator StartMiniGameAfterDelay()
     {
         yield return new WaitForSeconds(0.5f);
 
         if (memoryGameCanvas != null)
+        {
             memoryGameCanvas.SetActive(true);
+
+            // Ensure GameManager exists and is active inside the canvas
+            GameManager gmInCanvas = memoryGameCanvas.GetComponentInChildren<GameManager>(true);
+            if (gmInCanvas != null && !gmInCanvas.gameObject.activeSelf)
+                gmInCanvas.gameObject.SetActive(true);
+        }
+
+        // Wait one frame so Unity can register the enabled objects
+        yield return null;
 
         GameManager memoryGame = FindObjectOfType<GameManager>();
         if (memoryGame != null)
@@ -87,7 +106,7 @@ public class NPC_DodoController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("GameManager not found in scene!");
+            Debug.LogWarning(" GameManager not found in scene after enabling memory game!");
         }
     }
 
@@ -102,6 +121,18 @@ public class NPC_DodoController : MonoBehaviour
         // Change sprite
         if (spriteRenderer != null && newSpriteAfterWin != null)
             spriteRenderer.sprite = newSpriteAfterWin;
+
+        // Allow player to finish / unlock next level
+        FinishPoint finishPoint = FindObjectOfType<FinishPoint>();
+        if (finishPoint != null)
+        {
+            finishPoint.AllowNextLevel();
+            Debug.Log(" Dodo: Next level unlocked!");
+        }
+        else
+        {
+            Debug.LogWarning(" No FinishPoint found in the scene!");
+        }
 
         // Unsubscribe so it doesn’t double-trigger
         GameManager mg = FindObjectOfType<GameManager>();

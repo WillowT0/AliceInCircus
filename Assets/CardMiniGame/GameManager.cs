@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Memory Cards")]
-    public List<Card> cards = new List<Card>(); // Assign all cards in inspector or leave empty to auto-find
+    [Tooltip("Assign all cards in inspector or leave empty to auto-find.")]
+    public List<Card> cards = new List<Card>();
 
     private Card firstCard;
     private Card secondCard;
@@ -26,17 +27,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Auto-find cards if none assigned
+        // Auto-find cards if none are manually assigned
         if (cards.Count == 0)
-        {
-            cards.AddRange(FindObjectsOfType<Card>());
-        }
+            cards.AddRange(FindObjectsOfType<Card>(true)); // include inactive cards
 
-        // Safety check
+
         if (cards.Count % 2 != 0)
-        {
-            Debug.LogWarning("Warning: Odd number of cards detected. Make sure cards are in pairs.");
-        }
+            Debug.LogWarning("Warning: Odd number of cards detected. Ensure cards are in pairs.");
 
         totalPairs = cards.Count / 2;
         Debug.Log($"Memory game initialized with {cards.Count} cards ({totalPairs} pairs).");
@@ -53,39 +50,46 @@ public class GameManager : MonoBehaviour
         if (firstCard == null)
         {
             firstCard = card;
-            return;
         }
-
-        secondCard = card;
-        StartCoroutine(CheckMatch());
+        else
+        {
+            secondCard = card;
+            StartCoroutine(CheckMatch());
+        }
     }
 
     private IEnumerator CheckMatch()
     {
         canClick = false;
 
-        // Wait so player sees the second card
+        // Wait briefly so the player can see the second card
         yield return new WaitForSeconds(0.5f);
 
         if (firstCard.id == secondCard.id)
         {
+            // Match found
             firstCard.IsMatched = true;
             secondCard.IsMatched = true;
             pairsFound++;
 
-            Debug.Log($"Match found: {firstCard.id} (Pairs found: {pairsFound}/{totalPairs})");
+            Debug.Log($" Match found: {firstCard.id} (Pairs: {pairsFound}/{totalPairs})");
 
-            // Trigger win only if all pairs are matched
+            // Check for win
             if (pairsFound >= totalPairs)
             {
-                Debug.Log("Player won the memory game!");
+                Debug.Log(" Player won the memory game!");
                 OnGameWin?.Invoke();
             }
         }
         else
         {
+            // Not a match — wait a bit and hide
+            yield return new WaitForSeconds(0.5f);
+
             firstCard.Hide();
             secondCard.Hide();
+
+            Debug.Log($" No match: {firstCard.id} vs {secondCard.id}");
         }
 
         firstCard = null;
@@ -106,6 +110,6 @@ public class GameManager : MonoBehaviour
             card.Hide();
         }
 
-        Debug.Log("Memory game reset.");
+        Debug.Log(" Memory game reset.");
     }
 }

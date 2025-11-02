@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100.79735, y: -107}
-  m_SizeDelta: {x: -283.3958, y: -251.074}
+  m_AnchoredPosition: {x: -98.44296, y: -103.1}
+  m_SizeDelta: {x: -288.1046, y: -221.2516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2594154370395009959
 CanvasRenderer:
@@ -62,14 +62,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3312909034549220407, guid: 295e538e58b68b0458bdc697b7d558ae, type: 3}
+  m_Sprite: {fileID: -7600974012559954820, guid: 0b1a5e7e9d4fcca4899141edb5d6efaf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -423,8 +423,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114.43113, y: 102.29732}
-  m_SizeDelta: {x: 154.0759, y: 36.8973}
+  m_AnchoredPosition: {x: -133.07298, y: 91.760796}
+  m_SizeDelta: {x: 125.0332, y: 38.2745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3330969984278976705
 CanvasRenderer:
@@ -498,8 +498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254.5395, y: -119.47085}
-  m_SizeDelta: {x: 439.2248, y: 148.4303}
+  m_AnchoredPosition: {x: 253.7164, y: -112.34834}
+  m_SizeDelta: {x: 448.392, y: 124.0005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6124877744576289468
 CanvasRenderer:
@@ -556,8 +556,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 7615015966557145656}
   - component: {fileID: 9032395787876339889}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: DialogueUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

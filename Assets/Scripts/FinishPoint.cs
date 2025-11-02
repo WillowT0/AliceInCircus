@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class FinishPoint : MonoBehaviour
 {
-    [Header("Required Item")]
-    [SerializeField] private string requiredItemID; // The ItemID player must have
+    [Header("Required Item (Optional)")]
+    [Tooltip("Leave empty if no specific item is required to finish the level.")]
+    [SerializeField] private string requiredItemID;
 
     [Header("UI")]
-    [SerializeField] private GameObject confirmCanvas; // Assign the confirmation UI Canvas here
+    [Tooltip("Assign the confirmation UI Canvas here.")]
+    [SerializeField] private GameObject confirmCanvas;
 
     private bool playerInRange = false;
-    private bool npcCheckDone = false; 
-
+    private bool canFinishLevel = false; // Replaces npcCheckDone
     private InventoryManager inventoryManager;
 
     private void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
         if (inventoryManager == null)
-        {
             Debug.LogWarning("No InventoryManager found in the scene!");
-        }
 
         if (confirmCanvas != null)
             confirmCanvas.SetActive(false); // Ensure canvas starts inactive
@@ -27,12 +26,9 @@ public class FinishPoint : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && inventoryManager != null)
+        if (playerInRange && Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                TryShowConfirmUI();
-            }
+            TryShowConfirmUI();
         }
     }
 
@@ -56,20 +52,22 @@ public class FinishPoint : MonoBehaviour
 
     private void TryShowConfirmUI()
     {
-        if (!npcCheckDone)
+        if (!canFinishLevel)
         {
-            Debug.Log("You must talk to the rabbit before moving to the next level!");
+            Debug.Log("You can't move to the next level yet!");
             return;
         }
 
-        if (inventoryManager.HasItem(requiredItemID))
+        // If an item is required, check it; otherwise, just show the confirm canvas
+        if (string.IsNullOrEmpty(requiredItemID) ||
+            (inventoryManager != null && inventoryManager.HasItem(requiredItemID)))
         {
             if (confirmCanvas != null)
                 confirmCanvas.SetActive(true);
         }
         else
         {
-            Debug.Log("Player does not have the required item!");
+            Debug.Log($"Player does not have the required item: {requiredItemID}");
         }
     }
 
@@ -79,21 +77,23 @@ public class FinishPoint : MonoBehaviour
             confirmCanvas.SetActive(false);
     }
 
-    // Called by NPC_CheckItem when player passes the check
+    /// once the player meets the condition to finish the level.
+   
     public void AllowNextLevel()
     {
-        npcCheckDone = true;
-        Debug.Log("Rabbit check complete — player can now finish the level!");
+        canFinishLevel = true;
+        Debug.Log(" Player is now allowed to finish the level!");
     }
 
-    // Called from Yes button
+
     public void ConfirmAdvance()
     {
         SceneController.instance.NextLevel1();
         HideConfirmUI();
     }
 
-    // Called from No button
+   
+   
     public void CancelAdvance()
     {
         HideConfirmUI();
