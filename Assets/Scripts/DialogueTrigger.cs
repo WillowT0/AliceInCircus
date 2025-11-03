@@ -93,7 +93,7 @@ public class DialogueTrigger : MonoBehaviour
             yield return null;
         }
 
-        //  Unlock the FinishPoint once dialogue ends
+        // Unlock the FinishPoint once dialogue ends
         if (!hasUnlockedFinish && finishPoint != null)
         {
             finishPoint.AllowNextLevel();
@@ -101,12 +101,17 @@ public class DialogueTrigger : MonoBehaviour
             Debug.Log("[Rabbit] Player talked to me — FinishPoint unlocked!");
         }
 
-        // Optionally hide the NPC after dialogue
+        // Hide NPC
         if (npcVisual != null)
             npcVisual.SetActive(false);
 
+        // hide the visual cue now
+        if (visualCue != null)
+            visualCue.SetActive(false);
+
         npcActive = false;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

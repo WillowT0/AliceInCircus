@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
 public class Card : MonoBehaviour
 {
     public int id;
-    public Image frontImage;
-    public Image backImage;
+    private bool isRevealed = false;
+    public bool IsMatched { get; private set; }
 
-    [HideInInspector]
-    public bool IsMatched = false;
-
+    [Header("References")]
+    [SerializeField] private GameObject front;
+    [SerializeField] private GameObject back;
     private Button button;
 
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnClick);
+        if (button != null)
+            button.onClick.AddListener(OnCardClicked);
 
-        Hide();
+        Hide(); // start hidden
     }
 
-    public void OnClick()
+    private void OnCardClicked()
     {
         if (!IsMatched)
             GameManager.instance.CardRevealed(this);
@@ -29,13 +29,26 @@ public class Card : MonoBehaviour
 
     public void Reveal()
     {
-        frontImage.gameObject.SetActive(true);
-        backImage.gameObject.SetActive(false);
+        if (IsMatched) return;
+        isRevealed = true;
+        front.SetActive(true);
+        back.SetActive(false);
+        Debug.Log($"[Card {id}] Revealed!");
     }
 
     public void Hide()
     {
-        frontImage.gameObject.SetActive(false);
-        backImage.gameObject.SetActive(true);
+        if (IsMatched) return;
+        isRevealed = false;
+        front.SetActive(false);
+        back.SetActive(true);
+        Debug.Log($"[Card {id}] Hidden!");
+    }
+
+    public void Match()
+    {
+        IsMatched = true;
+        if (button != null)
+            button.interactable = false;
     }
 }

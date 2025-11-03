@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,43 +6,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Memory Cards")]
-    [Tooltip("Assign all cards in inspector or leave empty to auto-find.")]
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    [Header("Cards")]
     public List<Card> cards = new List<Card>();
 
     private Card firstCard;
     private Card secondCard;
     private bool canClick = true;
-    private int pairsFound = 0;
-    private int totalPairs = 0;
 
-    public event Action OnGameWin;
-
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        // Auto-find cards if none are manually assigned
-        if (cards.Count == 0)
-            cards.AddRange(FindObjectsOfType<Card>(true)); // include inactive cards
-
-
-        if (cards.Count % 2 != 0)
-            Debug.LogWarning("Warning: Odd number of cards detected. Ensure cards are in pairs.");
-
-        totalPairs = cards.Count / 2;
-        Debug.Log($"Memory game initialized with {cards.Count} cards ({totalPairs} pairs).");
-
-        ResetGame();
-    }
+    //Event that NPC_DodoController will subscribe to
+    public event System.Action OnGameWin;
 
     public void CardRevealed(Card card)
     {
-        if (!canClick || card.IsMatched || card == firstCard) return;
+        if (!canClick || card == firstCard) return;
 
         card.Reveal();
 
@@ -58,58 +38,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CheckMatch()
+    IEnumerator CheckMatch()
     {
         canClick = false;
 
-        // Wait briefly so the player can see the second card
-        yield return new WaitForSeconds(0.5f);
-
         if (firstCard.id == secondCard.id)
         {
-            // Match found
-            firstCard.IsMatched = true;
-            secondCard.IsMatched = true;
-            pairsFound++;
+            // Mark both as matched
+            firstCard.Match();
+            secondCard.Match();
 
-            Debug.Log($" Match found: {firstCard.id} (Pairs: {pairsFound}/{totalPairs})");
+            firstCard = null;
+            secondCard = null;
 
-            // Check for win
-            if (pairsFound >= totalPairs)
-            {
-                Debug.Log(" Player won the memory game!");
-                OnGameWin?.Invoke();
-            }
+            //  Check win condition
+            yield return new WaitForSeconds(0.3f);
+            CheckIfGameWon();
         }
         else
         {
-            // Not a match — wait a bit and hide
-            yield return new WaitForSeconds(0.5f);
-
+            // Not matched — hide after delay
+            yield return new WaitForSeconds(1f);
             firstCard.Hide();
             secondCard.Hide();
-
-            Debug.Log($" No match: {firstCard.id} vs {secondCard.id}");
+            firstCard = null;
+            secondCard = null;
         }
 
-        firstCard = null;
-        secondCard = null;
         canClick = true;
     }
 
-    public void ResetGame()
+    private void CheckIfGameWon()
     {
-        firstCard = null;
-        secondCard = null;
-        canClick = true;
-        pairsFound = 0;
-
-        foreach (var card in cards)
+        foreach (Card c in cards)
         {
-            card.IsMatched = false;
-            card.Hide();
+            if (!c.IsMatched)
+                return; // Still cards to match
         }
 
-        Debug.Log(" Memory game reset.");
+        //All matched
+        Debug.Log("All pairs found — game won!");
+        OnGameWin?.Invoke();
     }
 }
