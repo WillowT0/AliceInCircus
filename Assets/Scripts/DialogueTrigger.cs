@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -6,9 +6,13 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
-    [Header("Conditional Dialogue")]
-    [SerializeField] private TextAsset dialogueIfHasItem;
-    [SerializeField] private TextAsset dialogueIfMissingItem;
+    [Header("Dialogue Files (Has Item)")]
+    [SerializeField] private TextAsset firstDialogueHasItem;
+    [SerializeField] private TextAsset repeatDialogueHasItem;
+
+    [Header("Dialogue Files (Missing Item)")]
+    [SerializeField] private TextAsset firstDialogueMissingItem;
+    [SerializeField] private TextAsset repeatDialogueMissingItem;
 
     [Header("Item Check")]
     [SerializeField] private string itemToCheck;
@@ -17,15 +21,17 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private GameObject npcVisual;
 
     [Header("Finish Point Reference")]
-    [SerializeField] private FinishPoint finishPoint; //  Assign in Inspector
+    [SerializeField] private FinishPoint finishPoint; // Assign in Inspector
+
+    private bool hasTalkedWithItem = false;
+    private bool hasTalkedWithoutItem = false;
+    private bool hasUnlockedFinish = false;
 
     private bool playerInRange;
-    private bool npcActive;
-    private bool hasUnlockedFinish; //  Prevent double unlocks
+    private bool npcActive = true;
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return null;
         playerInRange = false;
         npcActive = true;
 
@@ -53,30 +59,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
-                if (inventoryManager != null)
-                {
-                    if (inventoryManager.HasItem(itemToCheck))
-                    {
-                        // Hide visual cue
-                        if (visualCue != null) visualCue.SetActive(false);
-
-                        // Start dialogue for having the item
-                        dialogueManager.EnterDialogueMode(dialogueIfHasItem);
-
-                        // Wait for dialogue to finish, then unlock finish point
-                        StartCoroutine(UnlockAfterDialogue());
-                    }
-                    else
-                    {
-                        // Dialogue when missing the item
-                        dialogueManager.EnterDialogueMode(dialogueIfMissingItem);
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("InventoryManager not found in scene!");
-                }
+                StartDialogue();
             }
         }
         else
@@ -85,30 +68,77 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    private void StartDialogue()
+    {
+        InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+        if (inventoryManager == null)
+        {
+            Debug.LogWarning("InventoryManager not found in scene!");
+            return;
+        }
+
+        bool hasItem = inventoryManager.HasItem(itemToCheck);
+        TextAsset dialogueToPlay = null;
+
+        // HAS ITEM
+        if (hasItem)
+        {
+            if (!hasTalkedWithItem)
+            {
+                dialogueToPlay = firstDialogueHasItem;
+                hasTalkedWithItem = true;
+                StartCoroutine(UnlockAfterDialogue()); // Unlock finish point after first “has item” talk
+            }
+            else
+            {
+                dialogueToPlay = repeatDialogueHasItem;
+            }
+        }
+        //  MISSING ITEM
+        else
+        {
+            if (!hasTalkedWithoutItem)
+            {
+                dialogueToPlay = firstDialogueMissingItem;
+                hasTalkedWithoutItem = true;
+            }
+            else
+            {
+                dialogueToPlay = repeatDialogueMissingItem;
+            }
+        }
+
+        if (dialogueToPlay == null)
+        {
+            Debug.LogWarning($"{gameObject.name}: Missing dialogue file for this condition!");
+            return;
+        }
+
+        DialogueManager.GetInstance().EnterDialogueMode(dialogueToPlay);
+    }
+
     private IEnumerator UnlockAfterDialogue()
     {
         // Wait until the dialogue finishes
         while (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().dialogueIsPlaying)
-        {
             yield return null;
-        }
 
         // Unlock the FinishPoint once dialogue ends
         if (!hasUnlockedFinish && finishPoint != null)
         {
             finishPoint.AllowNextLevel();
             hasUnlockedFinish = true;
-            Debug.Log("[Rabbit] Player talked to me � FinishPoint unlocked!");
+            Debug.Log($"[{gameObject.name}] Player talked to me — FinishPoint unlocked!");
         }
 
-        // Hide NPC
+        // Hide the NPC (only for the "has item" path)
         if (npcVisual != null)
             npcVisual.SetActive(false);
 
-        // hide the visual cue now
         if (visualCue != null)
             visualCue.SetActive(false);
 
+        // Optionally mark NPC as inactive
         npcActive = false;
     }
 

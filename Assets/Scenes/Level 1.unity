@@ -583,7 +583,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: dialogueIfMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueMissingItem
       value: 
       objectReference: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
     m_RemovedComponents: []
@@ -717,8 +733,10 @@ MonoBehaviour:
   newSpriteAfterWin: {fileID: -4524002299704006508, guid: f3eb36c434adef44d977c03577ff1338, type: 3}
   memoryGameCanvas: {fileID: 818848481}
   dialogueBeforeCards: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
+  repeatDialogueBeforeCards: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
   dialogueAfterCards: {fileID: 4900000, guid: 64cfd1a0a74a68b4392225734145e138, type: 3}
   dialogueAfterWin: {fileID: 4900000, guid: f12e89bc24d6ce345aaefec78b0f06ee, type: 3}
+  repeatDialogueAfterWin: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
   requiredItem: cards
   isActive: 1
   hasWonGame: 0
@@ -2242,7 +2260,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: dialogueIfMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueMissingItem
       value: 
       objectReference: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
     - target: {fileID: 8030013972817635908, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
@@ -2578,7 +2612,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
     - target: {fileID: 9159939965198230788, guid: 1ee0244a3a6c2a0428f2c155c3039c2b, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
+    - target: {fileID: 9159939965198230788, guid: 1ee0244a3a6c2a0428f2c155c3039c2b, type: 3}
       propertyPath: dialogueIfMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
+    - target: {fileID: 9159939965198230788, guid: 1ee0244a3a6c2a0428f2c155c3039c2b, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
+    - target: {fileID: 9159939965198230788, guid: 1ee0244a3a6c2a0428f2c155c3039c2b, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
+    - target: {fileID: 9159939965198230788, guid: 1ee0244a3a6c2a0428f2c155c3039c2b, type: 3}
+      propertyPath: repeatDialogueMissingItem
       value: 
       objectReference: {fileID: 4900000, guid: 256fe1c7d2313d34dbfacd359becb4ad, type: 3}
     m_RemovedComponents: []
@@ -3499,11 +3549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.2
+      value: -54.2
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.7
+      value: 21.2
       objectReference: {fileID: 0}
     - target: {fileID: 2227655331604109064, guid: 67c0e5fcaf07c714099948d729db77a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5645,11 +5695,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.812527
+      value: -33.984833
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.073816
+      value: -3.7725372
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6303,6 +6353,14 @@ PrefabInstance:
       propertyPath: dialogueIfMissingItem
       value: 
       objectReference: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
     - target: {fileID: 8030013972817635908, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.22
@@ -6553,11 +6611,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.5
+      value: -53
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.1
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 7149594079172504394, guid: c3ead6a84f15f294089614946d65e1a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7095,10 +7153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1680478832}
-  dialogueBeforeCards: {fileID: 4900000, guid: 5500377dad9ddc74587d575a8e38d7a4, type: 3}
-  dialogueAfterCards: {fileID: 4900000, guid: 64cfd1a0a74a68b4392225734145e138, type: 3}
-  dialogueAfterWin: {fileID: 4900000, guid: f12e89bc24d6ce345aaefec78b0f06ee, type: 3}
-  itemToCheck: cards
   dodoController: {fileID: 186377402}
 --- !u!4 &1049979799 stripped
 Transform:
@@ -7673,11 +7727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.5
+      value: -53
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.1
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6054575978355266304, guid: 27a247fc359fdf94a87c5c84593ba6d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9121,8 +9175,10 @@ MonoBehaviour:
   newSpriteAfterWin: {fileID: 0}
   memoryGameCanvas: {fileID: 818848481}
   dialogueBeforeCards: {fileID: 0}
+  repeatDialogueBeforeCards: {fileID: 0}
   dialogueAfterCards: {fileID: 0}
   dialogueAfterWin: {fileID: 0}
+  repeatDialogueAfterWin: {fileID: 0}
   requiredItem: cards
   isActive: 1
   hasWonGame: 0
@@ -18368,9 +18424,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: d87b7dbcaa56b8e47910ba8d988bcc61, type: 3}
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: d87b7dbcaa56b8e47910ba8d988bcc61, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: dialogueIfMissingItem
       value: 
       objectReference: {fileID: 4900000, guid: d87b7dbcaa56b8e47910ba8d988bcc61, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: d87b7dbcaa56b8e47910ba8d988bcc61, type: 3}
+    - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
+      propertyPath: repeatDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
     - target: {fileID: 8030013972817635908, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.98

@@ -10,8 +10,10 @@ public class NPC_DodoController : MonoBehaviour
 
     [Header("Dialogue Files")]
     [SerializeField] private TextAsset dialogueBeforeCards;
+    [SerializeField] private TextAsset repeatDialogueBeforeCards; //  Repeat before cards
     [SerializeField] private TextAsset dialogueAfterCards;
     [SerializeField] private TextAsset dialogueAfterWin;
+    [SerializeField] private TextAsset repeatDialogueAfterWin; //  Repeat after win
 
     [Header("Item Check")]
     [SerializeField] private string requiredItem = "cards";
@@ -19,6 +21,9 @@ public class NPC_DodoController : MonoBehaviour
     [Header("State Info (Debug)")]
     [SerializeField] private bool isActive = true;
     [SerializeField] private bool hasWonGame = false;
+
+    private bool hasTalkedBeforeCards = false; //  Track repeat before cards
+    private bool hasTalkedAfterWin = false;    //  Track repeat after win
 
     private SpriteRenderer spriteRenderer;
     private DialogueManager dialogueManager;
@@ -37,31 +42,41 @@ public class NPC_DodoController : MonoBehaviour
             memoryGameCanvas.SetActive(false);
     }
 
-    // Call this from your DialogueTrigger or directly when pressing E
+    // Called by DialogueTrigger_Dodo
     public void Interact()
     {
         if (!isActive) return;
 
+        //  After winning the memory game
         if (hasWonGame)
         {
-            // Already finished the game -> final dialogue
-            if (dialogueAfterWin != null)
+            if (hasTalkedAfterWin && repeatDialogueAfterWin != null)
+                dialogueManager.EnterDialogueMode(repeatDialogueAfterWin);
+            else if (dialogueAfterWin != null)
+            {
                 dialogueManager.EnterDialogueMode(dialogueAfterWin);
+                hasTalkedAfterWin = true;
+            }
         }
+        // Player has the required item (cards)
         else if (inventoryManager != null && inventoryManager.HasItem(requiredItem))
         {
-            // Player has the “cards” -> start dialogue that leads to minigame
             if (dialogueAfterCards != null)
             {
                 dialogueManager.OnDialogueComplete += StartMemoryGame;
                 dialogueManager.EnterDialogueMode(dialogueAfterCards);
             }
         }
+        //  Player missing required item
         else
         {
-            // Missing item dialogue
-            if (dialogueBeforeCards != null)
+            if (hasTalkedBeforeCards && repeatDialogueBeforeCards != null)
+                dialogueManager.EnterDialogueMode(repeatDialogueBeforeCards);
+            else if (dialogueBeforeCards != null)
+            {
                 dialogueManager.EnterDialogueMode(dialogueBeforeCards);
+                hasTalkedBeforeCards = true;
+            }
         }
     }
 
@@ -73,11 +88,9 @@ public class NPC_DodoController : MonoBehaviour
 
     private IEnumerator WaitForDialogueAndStartGame()
     {
-        // Wait until dialogue is finished
         while (dialogueManager.dialogueIsPlaying)
             yield return null;
 
-        // Now start the memory game after dialogue ends
         yield return StartCoroutine(StartMiniGameAfterDelay());
     }
 
@@ -88,25 +101,22 @@ public class NPC_DodoController : MonoBehaviour
         if (memoryGameCanvas != null)
         {
             memoryGameCanvas.SetActive(true);
-
-            // Ensure GameManager exists and is active inside the canvas
             GameManager gmInCanvas = memoryGameCanvas.GetComponentInChildren<GameManager>(true);
             if (gmInCanvas != null && !gmInCanvas.gameObject.activeSelf)
                 gmInCanvas.gameObject.SetActive(true);
         }
 
-        // Wait one frame so Unity can register the enabled objects
         yield return null;
 
         GameManager memoryGame = FindObjectOfType<GameManager>();
         if (memoryGame != null)
         {
             memoryGame.OnGameWin += OnMemoryGameWin;
-            Debug.Log(" Dodo subscribed to memory game win event.");
+            Debug.Log("Dodo subscribed to memory game win event.");
         }
         else
         {
-            Debug.LogWarning(" GameManager not found in scene after enabling memory game!");
+            Debug.LogWarning("GameManager not found in scene after enabling memory game!");
         }
     }
 
@@ -118,31 +128,33 @@ public class NPC_DodoController : MonoBehaviour
         if (memoryGameCanvas != null)
             memoryGameCanvas.SetActive(false);
 
-        // Change sprite
         if (spriteRenderer != null && newSpriteAfterWin != null)
             spriteRenderer.sprite = newSpriteAfterWin;
 
-        // Allow player to finish / unlock next level
         FinishPoint finishPoint = FindObjectOfType<FinishPoint>();
         if (finishPoint != null)
         {
             finishPoint.AllowNextLevel();
-            Debug.Log(" Dodo: Next level unlocked!");
+            Debug.Log("Dodo: Next level unlocked!");
         }
         else
         {
-            Debug.LogWarning(" No FinishPoint found in the scene!");
+            Debug.LogWarning("No FinishPoint found in the scene!");
         }
 
-        // Unsubscribe so it doesn’t double-trigger
         GameManager mg = FindObjectOfType<GameManager>();
         if (mg != null)
             mg.OnGameWin -= OnMemoryGameWin;
 
-        // Optional dialogue after winning
+        // Play first after-win dialogue automatically
         if (dialogueAfterWin != null)
+        {
             dialogueManager.EnterDialogueMode(dialogueAfterWin);
+            hasTalkedAfterWin = true;
+        }
         else
+        {
             Debug.Log("Dodo: Thanks for playing! (No after-win dialogue assigned)");
+        }
     }
 }
