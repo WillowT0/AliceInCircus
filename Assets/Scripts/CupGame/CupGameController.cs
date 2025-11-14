@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CupGameController : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class CupGameController : MonoBehaviour
     public float shuffleSpeed = 3f;
     public int shuffleCount = 5;
     public float liftHeight = 1f;
+    public float retryDelay = 1.5f;
+    public bool loadNextSceneOnWin = true;
 
     private int correctCupIndex;
     private bool canChoose = false;
@@ -137,16 +141,53 @@ public class CupGameController : MonoBehaviour
     {
         Transform chosenCup = cups[index];
 
+        // Lift the chosen cup
         yield return StartCoroutine(MoveCupY(chosenCup, chosenCup.position.y + liftHeight, 0.4f));
 
         if (index == correctCupIndex)
+        {
             Debug.Log("Trafiłeś!");
+
+            yield return new WaitForSeconds(1f);
+
+            // Load next scene
+            if (loadNextSceneOnWin)
+            {
+                int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                SceneManager.LoadScene(nextIndex);
+            }
+        }
         else
+        {
             Debug.Log("Pudło!");
 
-        yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(retryDelay);
 
-        yield return StartCoroutine(MoveCupY(chosenCup, chosenCup.position.y - liftHeight, 0.4f));
+            // Lower the cup back down
+            yield return StartCoroutine(MoveCupY(chosenCup, chosenCup.position.y - liftHeight, 0.4f));
+
+            // Restart the mini-game
+            ResetGame();
+        }
+    }
+
+    void ResetGame()
+    {
+        Debug.Log("🔁 Restarting cup game...");
+
+        StopAllCoroutines();
+
+        // Reset ball under a new random cup
+        correctCupIndex = Random.Range(0, cups.Length);
+
+        Vector3 ballPos = cups[correctCupIndex].position;
+        ballPos.y -= 0.5f;
+        ball.position = ballPos;
+
+        canChoose = false;
+
+        // Restart animations
+        StartCoroutine(RevealBallAtStart());
     }
 
     IEnumerator MoveCupY(Transform cup, float targetY, float duration)

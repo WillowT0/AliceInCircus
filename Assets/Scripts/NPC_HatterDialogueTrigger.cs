@@ -115,12 +115,13 @@ public class HatterDialogueTrigger : MonoBehaviour
 
     private void AutoTriggerSafeOpenedDialogue()
     {
-        // Auto-start first "safe opened" dialogue if not done yet
         if (!hasTalkedWithSafeOpened)
         {
             StartDialogue();
+            StartCoroutine(UnlockAfterDialogue());
         }
     }
+
 
     private IEnumerator UnlockAfterDialogue()
     {

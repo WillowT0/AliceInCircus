@@ -41,13 +41,7 @@ public class NPC_CheckItem : MonoBehaviour
 
     void Update()
     {
-        // Tryb debug – naciśnij "U", aby zasymulować posiadanie itemu
-        if (debugMode && Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("[DEBUG] Wciśnięto U — symulacja posiadania itemu!");
-            OpenCanvas();
-            UnlockFinishPoint();
-        }
+        
     }
 
     void CheckItem()

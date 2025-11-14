@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
@@ -16,12 +14,13 @@ public class IntroSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("VideoPlayer nie jest przypisany w Inspectorze.");
+            Debug.LogError("VideoPlayer is not assigned in the Inspector.");
         }
     }
 
     private void VideoPlayer_loopPointReached(VideoPlayer source)
     {
-        SceneManager.LoadScene("Level 0");
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentIndex + 1);
     }
 }
