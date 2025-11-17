@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Audio Settings")]
+    public PlayerSounds playerSounds;
+
     [Header("Movement Settings")]
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
@@ -85,14 +88,18 @@ public class PlayerController : MonoBehaviour
         else
             GetComponent<PlayerInput>().enabled = true;
 
-        // Handle coyote time
         if (touchingDirections.IsGrounded)
             coyoteTimeCounter = coyoteTime;
         else
             coyoteTimeCounter -= Time.deltaTime;
+
+        if (playerSounds != null)
+        {
+            playerSounds.isSprinting = IsRunning;
+            playerSounds.isMoving = IsMoving;
+            playerSounds.isGrounded = touchingDirections.IsGrounded;
+        }
     }
-
-
 
     private void FixedUpdate()
     {
@@ -115,24 +122,20 @@ public class PlayerController : MonoBehaviour
 
         if (rb.linearVelocity.y < 0 && moveInput.y < 0)
         {
-            // Fast fall when pressing down
             gravityMultiplier = fastFallGravityMult;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFastFallSpeed));
         }
         else if (isJumpCut)
         {
-            // Higher gravity when jump is released early
             gravityMultiplier = jumpCutGravityMult;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
         }
         else if (rb.linearVelocity.y > 0 && Mathf.Abs(rb.linearVelocity.y) < jumpHangTimeThreshold)
         {
-            // Hang time for smoother jump apex
             gravityMultiplier = jumpHangGravityMult;
         }
         else if (rb.linearVelocity.y < 0)
         {
-            // Normal falling gravity
             gravityMultiplier = fallGravityMult;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
         }
@@ -175,6 +178,9 @@ public class PlayerController : MonoBehaviour
         if (context.started && coyoteTimeCounter > 0f)
         {
             animator.SetTrigger("jump");
+            
+            if (playerSounds != null) playerSounds.PlayJump();
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
             isJumpHeld = true;
             isJumpCut = false;
@@ -183,15 +189,17 @@ public class PlayerController : MonoBehaviour
         else if (context.canceled)
         {
             isJumpHeld = false;
-            isJumpCut = rb.linearVelocity.y > 0; // Trigger cut if player is ascending
+            isJumpCut = rb.linearVelocity.y > 0;
         }
     }
 
     public void OnJumpBounce()
     {
+        if (playerSounds != null) playerSounds.PlayJump();
+
         isJumpHeld = true;
         isJumpCut = false;
-        coyoteTimeCounter = 0f; // reset coyote time so player can jump immediately after
+        coyoteTimeCounter = 0f;
     }
 
 
