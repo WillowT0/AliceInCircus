@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PointerController : MonoBehaviour
 {
@@ -22,15 +23,17 @@ public class PointerController : MonoBehaviour
     {
         if (!qteActive) return;
 
+        // Move pointer toward target
         pointerTransform.position =
             Vector3.MoveTowards(pointerTransform.position, targetPosition, moveSpeed * Time.deltaTime);
 
+        // Reverse direction when reaching end points
         if (Vector3.Distance(pointerTransform.position, pointA.position) < 0.1f)
             targetPosition = pointB.position;
-
         else if (Vector3.Distance(pointerTransform.position, pointB.position) < 0.1f)
             targetPosition = pointA.position;
 
+        // Check input
         if (Input.GetKeyDown(KeyCode.Space))
             CheckSuccess();
     }
@@ -43,8 +46,7 @@ public class PointerController : MonoBehaviour
 
     private void CheckSuccess()
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(
-            safeZone, pointerTransform.position, null))
+        if (RectTransformUtility.RectangleContainsScreenPoint(safeZone, pointerTransform.position, null))
         {
             Debug.Log("QTE Success!");
             EndQTE(true);
@@ -66,7 +68,26 @@ public class PointerController : MonoBehaviour
         }
         else
         {
-            // Optional retry logic
+            // Wait before restarting the QTE
+            StartCoroutine(RestartQTEAfterDelay(1f));
         }
+    }
+
+    private IEnumerator RestartQTEAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResetQTE();
+    }
+
+    private void ResetQTE()
+    {
+        // Reset pointer to start
+        pointerTransform.position = pointA.position;
+
+        // Set direction toward pointB
+        targetPosition = pointB.position;
+
+        // Start QTE again
+        qteActive = true;
     }
 }
