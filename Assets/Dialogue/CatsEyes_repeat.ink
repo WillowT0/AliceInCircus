@@ -1,2 +1,2 @@
-... #speaker:Mr.Smiley (?) #portrait:CatsEyes
+... #speaker:Mr Eyes #portrait:CatsEyes
 ...? #speaker:Alice #portrait:Alice

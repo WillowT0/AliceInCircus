@@ -5699,11 +5699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.999
+      value: -33.993526
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7726176
+      value: -3.7725875
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18442,7 +18442,7 @@ PrefabInstance:
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: repeatDialogueHasItem
       value: 
-      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
+      objectReference: {fileID: 4900000, guid: d98638bba8759f14296ab622b47cce04, type: 3}
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: firstDialogueMissingItem
       value: 
@@ -18450,7 +18450,7 @@ PrefabInstance:
     - target: {fileID: 7460113095231352780, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: repeatDialogueMissingItem
       value: 
-      objectReference: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
+      objectReference: {fileID: 4900000, guid: d98638bba8759f14296ab622b47cce04, type: 3}
     - target: {fileID: 8030013972817635908, guid: 4e86752dc16225d49a3e503fd4f3254c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.98

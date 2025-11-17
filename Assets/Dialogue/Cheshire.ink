@@ -1,15 +1,11 @@
 Looking for something again? #speaker:??? #portrait:Cheshire
-Again...? Oh, hello! You're mr. Smiley, aren't you? #speaker:Alice #portrait:Alice
-I didn't know you were a talking cat! 
-Talking cat? A Cheshire cat, missy. #speaker:Smiley(?) #portrait:Cheshire
+Again? Oh, hello! I didn't know you were a talking cat, Mr Eyes. speaker:Alice #portrait:Alice
+Talking cat? A Cheshire cat, missy. #speaker:??? #portrait:Cheshire
 So, have you found what you were looking for? #speaker:Cheshire #portrait:Cheshire
-Oh, I did found a pocket watch for mr. Rabbit. #speaker:Alice #portrait:Alice
-Yet you're looking for something again. #speaker:Cheshire #portrait:Cheshire
-Not for something but someone. I am looking for Tweedle Dee's brother. #speaker:Alice #portrait:Alice
-Same thing. He went that way. #speaker:Cheshire #portrait:Cheshire
-Which way? #speaker:Alice #portrait:Alice
-The jellyfish way. #speaker:Cheshire #portrait:Cheshire
-Jellyfish...? #speaker:Alice #portrait:Alice
+I did find Mr Rabbit's pocket watch. #speaker:Alice #portrait:Alice
+But I am searching for a way to rescue Tweedle Dee's brother... 
+In that case take cards and jellyfishes way. #speaker:Cheshire #portrait:Cheshire
+Huh? #speaker:Alice #portrait:Alice
 ... #speaker:Cheshire #portrait:Cheshire
 ...#speaker:Alice #portrait:Alice
 ... #speaker:Cheshire #portrait:Cheshire
