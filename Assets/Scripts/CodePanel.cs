@@ -13,7 +13,7 @@ public class CodePanel : MonoBehaviour {
 	void Update () {
 		codeText.text = codeTextValue;
 
-		if (codeTextValue == "1234") {
+		if (codeTextValue == "5681") {
 			Cat.isSafeOpened = true;
 		}
 
