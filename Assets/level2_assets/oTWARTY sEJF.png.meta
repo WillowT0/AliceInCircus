@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 2ef0251b9eef3ff4fae875a6974df537
+guid: eabcf7e5a1522c446ac59bc0b4eadcb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3155160288872215500
-    second: StarClownDialogue_0
-  - first:
-      213: 5827955205076393636
-    second: StarClownDialogue_1
+      213: 1010521845335200086
+    second: Untitled196_20251118105950_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarClownDialogue_0
+      name: Untitled196_20251118105950_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 291
-        height: 407
+        width: 1280
+        height: 1280
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43c4a5c1f6e9634d0800000000000000
-      internalID: -3155160288872215500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StarClownDialogue_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 291
-        height: 126
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ae9775916e01e050800000000000000
-      internalID: 5827955205076393636
+      spriteID: 6511afca348160e00800000000000000
+      internalID: 1010521845335200086
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a15b90ee4bd39804aaa3626d87c9ea98
+    spriteID: fc3638a72856da34caea7b1bfc275b2b
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarClownDialogue_0: -3155160288872215500
-      StarClownDialogue_1: 5827955205076393636
+      Untitled196_20251118105950_0: 1010521845335200086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

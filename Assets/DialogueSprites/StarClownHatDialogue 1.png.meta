@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ccd163f9634dd93429b0b0ba2f1175da
+guid: 952e50bc8f8874d4ca35c48e3fabba3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8659606133767495615
-    second: Twin1Dialogue_0
+      213: 2818755508544399877
+    second: StarClownHatDialogue 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Twin1Dialogue_0
+      name: StarClownHatDialogue 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 291
-        height: 407
+        x: 10
+        y: 95
+        width: 272
+        height: 253
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbf510ae5e91d2870800000000000000
-      internalID: 8659606133767495615
+      spriteID: 50ae67b533b3e1720800000000000000
+      internalID: 2818755508544399877
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 963f0278b96ab95419183755d232183e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Twin1Dialogue_0: 8659606133767495615
+      StarClownHatDialogue 1_0: 2818755508544399877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
