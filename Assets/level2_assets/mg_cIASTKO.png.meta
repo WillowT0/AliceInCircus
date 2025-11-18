@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 663291fb3f7baac48a04c188b7f14a98
+guid: 39ddc5ce9b295db448e7e7479290a006
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8040952166415117496
-    second: dODODialogue_0
+      213: -5406800591120148147
+    second: Untitled197_20251118154328_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dODODialogue_0
+      name: Untitled197_20251118154328_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 290
-        height: 407
+        x: 244
+        y: 336
+        width: 708
+        height: 205
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8435be08b9cc86090800000000000000
-      internalID: -8040952166415117496
+      spriteID: d4959e2428f27f4b0800000000000000
+      internalID: -5406800591120148147
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d68f85bceb916cd4f9dc867a4a6bfcde
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dODODialogue_0: -8040952166415117496
+      Untitled197_20251118154328_0: -5406800591120148147
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

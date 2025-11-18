@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 7694c41bfe767ae4891bfb3f32f6a165
+guid: 6016c57b27c5e4d4f984f9238c362608
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1080236676044109861
-    second: Twin2Dialogue_0
+      213: -2999552140294789208
+    second: StarClownDialogue 1_0
+  - first:
+      213: 3988052493941117218
+    second: StarClownDialogue 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +103,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Twin2Dialogue_0
+      name: StarClownDialogue 1_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 286
+        width: 291
         height: 407
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -115,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52835f49885cdfe00800000000000000
-      internalID: 1080236676044109861
+      spriteID: 8a7677088337f56d0800000000000000
+      internalID: -2999552140294789208
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1663e8d6e28abcf49b68a2c50d00bbcb
+    spriteID: 668966c433645664dac893b938bbc247
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +138,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Twin2Dialogue_0: 1080236676044109861
+      StarClownDialogue 1_0: -2999552140294789208
+      StarClownDialogue 1_1: 3988052493941117218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
