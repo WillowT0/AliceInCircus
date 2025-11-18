@@ -1319,10 +1319,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1245480478}
     m_Modifications:
+    - target: {fileID: 2747678809370158933, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3016938282738336879, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
       propertyPath: m_Name
       value: NPC_Cheshire Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4975115336334377914, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 8f3060765149b1e468b08b65487e32d1, type: 3}
+    - target: {fileID: 4975115336334377914, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 75b27668cd27a35438b2ea96490b6d37, type: 3}
+    - target: {fileID: 4975115336334377914, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 8f3060765149b1e468b08b65487e32d1, type: 3}
+    - target: {fileID: 4975115336334377914, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
+      propertyPath: repeatDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 75b27668cd27a35438b2ea96490b6d37, type: 3}
     - target: {fileID: 5619607736589862450, guid: a913bbbd7d324b24e8ba8e93a88c5abb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1558393
@@ -7111,7 +7131,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8124161, y: -2.0522919}
+  m_Offset: {x: 0.74427795, y: -2.0522919}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7121,7 +7141,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.624832, y: 4.03846}
+  m_Size: {x: 3.6305542, y: 4.03846}
   m_EdgeRadius: 0
 --- !u!114 &1180384650
 MonoBehaviour:
@@ -7136,10 +7156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1671526684}
-  firstDialogueHasItem: {fileID: 0}
-  repeatDialogueHasItem: {fileID: 0}
-  firstDialogueMissingItem: {fileID: 0}
-  repeatDialogueMissingItem: {fileID: 0}
+  firstDialogueHasItem: {fileID: 4900000, guid: 9e510ecaac79a744183f3e68359bfc21, type: 3}
+  repeatDialogueHasItem: {fileID: 4900000, guid: 0441a16c89a5b534c93df9d9525c15df, type: 3}
+  firstDialogueMissingItem: {fileID: 4900000, guid: 9e510ecaac79a744183f3e68359bfc21, type: 3}
+  repeatDialogueMissingItem: {fileID: 4900000, guid: 0441a16c89a5b534c93df9d9525c15df, type: 3}
   itemToCheck: 
   npcVisual: {fileID: 1617446026}
   finishPoint: {fileID: 0}
@@ -7635,14 +7655,14 @@ Transform:
   m_GameObject: {fileID: 1245480477}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.88, y: 49.84, z: -26.094}
+  m_LocalPosition: {x: 3.090973, y: 40.674496, z: 0.12042904}
   m_LocalScale: {x: 2.0521538, y: 2.0521538, z: 2.0521538}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841507626}
   - {fileID: 2038091787}
   - {fileID: 1894421621}
-  m_Father: {fileID: 1538061787}
+  m_Father: {fileID: 1558413634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1247442443
 GameObject:
@@ -8165,6 +8185,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 526421690299154962, guid: 5688e57e272f97349bf14218437cb95a, type: 3}
+      propertyPath: firstDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 42e4fcd458cd4d94fa61c5a6aceabc36, type: 3}
+    - target: {fileID: 526421690299154962, guid: 5688e57e272f97349bf14218437cb95a, type: 3}
+      propertyPath: repeatDialogueHasItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 42e4fcd458cd4d94fa61c5a6aceabc36, type: 3}
+    - target: {fileID: 526421690299154962, guid: 5688e57e272f97349bf14218437cb95a, type: 3}
+      propertyPath: firstDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 42e4fcd458cd4d94fa61c5a6aceabc36, type: 3}
+    - target: {fileID: 526421690299154962, guid: 5688e57e272f97349bf14218437cb95a, type: 3}
+      propertyPath: repeatDialogueMissingItem
+      value: 
+      objectReference: {fileID: 4900000, guid: 42e4fcd458cd4d94fa61c5a6aceabc36, type: 3}
     - target: {fileID: 1806336135542712790, guid: 5688e57e272f97349bf14218437cb95a, type: 3}
       propertyPath: m_Size.x
       value: 30.086071
@@ -9086,7 +9122,6 @@ Transform:
   - {fileID: 472710105}
   - {fileID: 1584003993}
   - {fileID: 839883522}
-  - {fileID: 1245480478}
   - {fileID: 487498240}
   - {fileID: 14301672}
   - {fileID: 992320807}
@@ -9127,6 +9162,7 @@ Transform:
   - {fileID: 1142181372}
   - {fileID: 1130169547}
   - {fileID: 1840479528}
+  - {fileID: 1245480478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1564926831
@@ -9633,10 +9669,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1188648900}
-  firstDialogueSafeOpened: {fileID: 4900000, guid: b8bd9869c74dd8948b2e73390495cdbc, type: 3}
-  repeatDialogueSafeOpened: {fileID: 4900000, guid: c3983692ae52abc4cba512cd187a3b75, type: 3}
-  firstDialogueSafeClosed: {fileID: 4900000, guid: a1074ed579a14d243a0e44836884fb62, type: 3}
-  repeatDialogueSafeClosed: {fileID: 4900000, guid: f63d0f1c48816544db453f32ab5fc616, type: 3}
+  firstDialogueSafeOpened: {fileID: 4900000, guid: 6f3a721255a725b4e8dfee962ff3b2ca, type: 3}
+  repeatDialogueSafeOpened: {fileID: 4900000, guid: 1f668918b874bd74cb983e9cb69c0a92, type: 3}
+  firstDialogueSafeClosed: {fileID: 4900000, guid: 0eb1ad676dda9c64ca5c408955cac59b, type: 3}
+  repeatDialogueSafeClosed: {fileID: 4900000, guid: a13469e6a4dd21f41836b9a46a26b4d6, type: 3}
   npcVisual: {fileID: 676571169}
   finishPoint: {fileID: 618119126}
 --- !u!1 &1652450557

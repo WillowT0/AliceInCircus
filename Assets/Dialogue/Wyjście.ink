@@ -1,0 +1,1 @@
+Such a big door...! But I'd like to help Mad Hatter before exploring... #speaker:Alice #portrait:Alice

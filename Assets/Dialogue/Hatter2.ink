@@ -1,0 +1,1 @@
+The queen hid our tea in the cabinet over there. I wish I knew what code unlocks it! #speaker:Mad Hatter #portrait:Hatter

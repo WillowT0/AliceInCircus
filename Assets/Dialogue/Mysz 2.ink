@@ -1,0 +1,1 @@
+Je suis l'empereur du Fromage! #speaker:Dormouse #portrait:Mysz
