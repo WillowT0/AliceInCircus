@@ -3,64 +3,80 @@ using Unity.Cinemachine;
 
 public class CameraRiseTrigger : MonoBehaviour
 {
-    [Header("References")]
-    public CinemachineCamera vCam;   // Virtual camera
+    [Header("Player / Camera")]
     public Transform player;
-    public Transform triggerPoint;   // Y position where rising starts
+    public CinemachineCamera vCam;
+    public PlayerHealth playerHealth;
 
-    [Header("Settings")]
+    private CinemachinePositionComposer composer;
+
+    [Header("Rise Settings")]
+    public Transform triggerPoint;
     public float upwardSpeed = 1f;
-    public float maxRiseDistance = 50f;
+    public float maxRiseDistance = 10f;
+    public float deathOffset = 1f;
 
-    private CinemachineCameraOffset cameraOffset;
     private bool rising = false;
     private float initialYOffset;
 
-    [Header("Death Settings")]
-    public float deathOffset = 1f; // Grace distance below camera
-
-    private PlayerHealth playerHealth;
+    [Header("UI Warning Indicator")]
+    public GameObject risingIndicator;
+    
 
     void Start()
     {
-        if (vCam == null)
-            vCam = GetComponent<CinemachineCamera>();
+        // Get PositionComposer (new offset controller)
+        composer = vCam.GetComponent<CinemachinePositionComposer>();
 
-        cameraOffset = vCam.GetComponent<CinemachineCameraOffset>();
-        if (cameraOffset == null)
-            cameraOffset = vCam.gameObject.AddComponent<CinemachineCameraOffset>();
+        if (composer == null)
+        {
+            Debug.LogError("CinemachinePositionComposer component missing! Add it to your Cinemachine Camera.");
+            enabled = false;
+            return;
+        }
 
-        initialYOffset = cameraOffset.Offset.y;
+        initialYOffset = composer.TargetOffset.y;
 
-        // Cache PlayerHealth reference
-        if (player != null)
-            playerHealth = player.GetComponent<PlayerHealth>();
+        // Hide UI indicator at start
+        if (risingIndicator != null)
+            risingIndicator.SetActive(false);
     }
 
     void Update()
     {
-        if (player == null || cameraOffset == null || playerHealth == null)
+        if (player == null || composer == null || playerHealth == null)
             return;
 
-        // Start camera rising when player crosses trigger point
+        // Start rising
         if (!rising && player.position.y >= triggerPoint.position.y)
             rising = true;
 
-        // Move camera upward
+        // UI indicator
+        if (risingIndicator != null)
+        {
+            if (rising && !risingIndicator.activeSelf)
+                risingIndicator.SetActive(true);
+        }
+
+        
+
+        // Move camera upward (modify the PositionComposer offset)
         if (rising)
         {
-            Vector3 offset = cameraOffset.Offset;
+            Vector3 offset = composer.TargetOffset;
             float newY = offset.y + upwardSpeed * Time.deltaTime;
+
             if (newY > initialYOffset + maxRiseDistance)
                 newY = initialYOffset + maxRiseDistance;
 
             offset.y = newY;
-            cameraOffset.Offset = offset;
+            composer.TargetOffset = offset;
         }
 
-        // Check if player fell below camera
-        float cameraBottomY = vCam.transform.position.y + cameraOffset.Offset.y - Camera.main.orthographicSize;
-        if (player.position.y < cameraBottomY - deathOffset)
+        // Check if player falls below visible bottom of camera
+        float camBottomY = vCam.transform.position.y - Camera.main.orthographicSize;
+
+        if (player.position.y < camBottomY - deathOffset)
         {
             KillPlayer();
         }
@@ -69,9 +85,6 @@ public class CameraRiseTrigger : MonoBehaviour
     private void KillPlayer()
     {
         if (playerHealth != null)
-        {
-            // Deal enough damage to kill the player immediately
             playerHealth.TakeDamage(playerHealth.currentHealth);
-        }
     }
 }
