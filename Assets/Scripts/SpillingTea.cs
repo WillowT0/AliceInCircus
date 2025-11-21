@@ -13,8 +13,17 @@ public class SpillingTea : MonoBehaviour
     [Tooltip("Przeciągnij tutaj obiekt 'SpilledTea' z hierarchii")]
     [SerializeField] private GameObject spilledTeaObject;
 
+    [Header("Czajnik")]
+    [Tooltip("Przeciągnij tutaj sprite czajnika")]
+    [SerializeField] private Transform teapot;
+
+    [Tooltip("O ile stopni przechylić czajnik podczas lania")]
+    [SerializeField] private float tiltAngle = -15f;
+
     private SpriteRenderer teaSprite;
     private Collider2D teaCollider;
+
+    private Quaternion defaultRotation;
 
     void Start()
     {
@@ -29,6 +38,14 @@ public class SpillingTea : MonoBehaviour
             return;
         }
 
+        if (teapot == null)
+        {
+            Debug.LogError("Nie przypisano obiektu 'teapot' w inspektorze!", this);
+            return;
+        }
+
+        defaultRotation = teapot.rotation;
+
         StartCoroutine(TeaCycle());
     }
 
@@ -36,14 +53,21 @@ public class SpillingTea : MonoBehaviour
     {
         while (true)
         {
-        
+            // TEA OFF (safe)
             teaSprite.enabled = false;
             teaCollider.enabled = false;
 
+            // Un-tilt the teapot
+            teapot.rotation = defaultRotation;
+
             yield return new WaitForSeconds(inactiveTime);
 
+            // TEA ON (spilling)
             teaSprite.enabled = true;
             teaCollider.enabled = true;
+
+            // Tilt teapot
+            teapot.rotation = Quaternion.Euler(0, 0, tiltAngle);
 
             yield return new WaitForSeconds(activeTime);
         }
