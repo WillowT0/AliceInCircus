@@ -1,0 +1,1 @@
+Maybe if I gave the Queen some of my tea, she wouldn't be so up her arse... #speaker: ??? #portrait:default
