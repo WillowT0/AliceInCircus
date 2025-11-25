@@ -1,5 +1,5 @@
 Looking for something again? #speaker:??? #portrait:Cheshire
-Again? Oh, hello! I didn't know you were a talking cat, Mr Eyes. speaker:Alice #portrait:Alice
+Again? Oh, hello! I didn't know you were a talking cat, Mr Eyes. #speaker:Alice #portrait:Alice
 Talking cat? A Cheshire cat, missy. #speaker:??? #portrait:Cheshire
 So, have you found what you were looking for? #speaker:Cheshire #portrait:Cheshire
 I did find Mr Rabbit's pocket watch. #speaker:Alice #portrait:Alice

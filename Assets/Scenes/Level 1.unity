@@ -5760,11 +5760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.99097
+      value: -33.995968
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7725775
+      value: -3.7725976
       objectReference: {fileID: 0}
     - target: {fileID: 5191907971762149647, guid: 4d2e88d752e05ad4fa66ba81d8e5db79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9631,7 +9631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddb47564ccfcbd4cb03c00464833540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 10
+  bounceForce: 15
   damage: 1
 --- !u!61 &1616253000
 BoxCollider2D:
