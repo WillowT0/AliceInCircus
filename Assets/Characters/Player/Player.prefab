@@ -421,7 +421,7 @@ MonoBehaviour:
   walkPitch: 1
   sprintPitch: 1.2
   jumpClip: {fileID: 8300000, guid: 16605f0b9aea3a54bb56f90bf7d5ed2e, type: 3}
-  jumpVolume: 0.17
+  jumpVolume: 0.13
   isMoving: 0
   isSprinting: 0
   isGrounded: 0
