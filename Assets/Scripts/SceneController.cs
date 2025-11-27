@@ -7,6 +7,8 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;   // <--- ADD THIS HERE
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -14,8 +16,8 @@ public class SceneController : MonoBehaviour
         }
 
         instance = this;
-        // no DontDestroyOnLoad() resets with each new scene
     }
+
 
 
     public void NextLevel1()

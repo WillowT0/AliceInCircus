@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isRunning = false;
     [SerializeField] private bool _isFacingRight = true;
 
+  
+
+
     public bool IsMoving
     {
         get => _isMoving;
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(newX, rb.linearVelocity.y);
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
+
 
     #region GRAVITY
     private void HandleGravity()
